@@ -5,15 +5,20 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import './index.css'
 
 import StringReverser from './Pages/StringReverser';
+import HomePage from './Pages/HomePage';
 
 const router = createBrowserRouter([
   {
     path: "/",
     children: [
       {
+        path: "/",
+        element: <HomePage />
+      },
+      {
         path: "/reverse",
         element: <StringReverser />
-      }
+      },
     ]
   }
 ]);
