@@ -14,13 +14,13 @@ import java.util.Map;
 public class UserController {
     @Autowired
     UserRepository userRepository;
-    @GetMapping(value = "/all", produces = "application/json")
+    @GetMapping(produces = "application/json")
     public List<User> getAllUsers() {
         List<User> allUsers = userRepository.findAll();
         System.out.println(allUsers);
         return allUsers;
     }
-    @PostMapping(value = "/create", produces = "application/json")
+    @PostMapping(produces = "application/json")
     public HttpStatus createUser(@RequestBody Map<String, String> requestBody) {
         userRepository.save(new User(null, requestBody.get("username"), requestBody.get("password")));
         return HttpStatus.OK;

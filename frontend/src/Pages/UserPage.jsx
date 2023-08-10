@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const fetchCreateUser = (username, password) => {
-    return fetch("http://localhost:8080/user/create", {
+    return fetch("http://localhost:8080/user", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -11,7 +11,7 @@ const fetchCreateUser = (username, password) => {
 }
 
 const fetchGetAllUsers = () => {
-    return fetch("http://localhost:8080/user/all").then((res) => res.json());
+    return fetch("http://localhost:8080/user").then((res) => res.json());
 }
 
 const fetchDeleteUserById = (id) => {
