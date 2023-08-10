@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import './index.css'
 
 import StringReverser from './Pages/StringReverser';
+import UserPage from './Pages/UserPage';
 
 const router = createBrowserRouter([
   {
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
       {
         path: "/reverse",
         element: <StringReverser />
+      },
+      {
+        path: "/user",
+        element: <UserPage />
       }
     ]
   }
