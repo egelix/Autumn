@@ -4,10 +4,14 @@ import com.example.journey.autumn.model.User;
 import com.example.journey.autumn.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+
+import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @RestController
 @RequestMapping("/user")
@@ -26,9 +30,13 @@ public class UserController {
         return HttpStatus.OK;
     }
     @DeleteMapping(value = "/{id}")
-    public HttpStatus deleteById(@PathVariable("id") int id) {
+    public HttpStatus deleteUserById(@PathVariable("id") int id) {
         userRepository.deleteById(id);
         return HttpStatus.OK;
     }
-
+    @GetMapping(value = "/{id}", produces = "application/json")
+    public ResponseEntity<User> getUserbyId(@PathVariable("id") int id) {
+        Optional<User> requestedUser = userRepository.findById(id);
+        return requestedUser.isPresent() ? new ResponseEntity<>(requestedUser.get(), HttpStatus.OK) : new ResponseEntity<>(null, NOT_FOUND);
+    }
 }
