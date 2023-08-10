@@ -25,6 +25,9 @@ public class UserController {
         userRepository.save(new User(null, requestBody.get("username"), requestBody.get("password")));
         return HttpStatus.OK;
     }
-
-
+    @DeleteMapping(value = "/{id}")
+    public HttpStatus deleteById(@PathVariable("id") int id) {
+        userRepository.deleteById(id);
+        return HttpStatus.OK;
+    }
 }
