@@ -7,6 +7,7 @@ import './index.css'
 import StringReverser from './Pages/StringReverser';
 import HomePage from './Pages/HomePage';
 import UserPage from './Pages/UserPage';
+import GamePage from './Pages/GamePage';
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "/user",
         element: <UserPage />
+      },
+      {
+        path: "/game",
+        element: <GamePage />
       }
     ]
   }
