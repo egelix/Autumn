@@ -21,11 +21,14 @@ public class SecurityConfiguration {
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http.csrf().and().cors().disable()
+        return http
+                .csrf(csrf -> csrf.disable())
+                .cors(cors -> cors.disable())
+                //.csrf().and().cors().disable()
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers(HttpMethod.GET, "users").hasAuthority("USER");
-                    auth.requestMatchers(HttpMethod.GET, "users/{id}").hasAuthority("USER");
                     auth.requestMatchers(HttpMethod.POST, "users").hasAuthority("USER");
+                    auth.requestMatchers(HttpMethod.GET, "users/{id}").hasAuthority("USER");
                     auth.requestMatchers(HttpMethod.DELETE, "users/{id}").hasAuthority("ADMIN");
                 })
                 .httpBasic(Customizer.withDefaults())
