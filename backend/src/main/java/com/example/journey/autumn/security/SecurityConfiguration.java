@@ -23,10 +23,10 @@ public class SecurityConfiguration {
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf().and().cors().disable()
                 .authorizeHttpRequests(auth -> {
-                    auth.requestMatchers(HttpMethod.GET, "users").hasRole("USER");
-                    auth.requestMatchers(HttpMethod.GET, "users/{id}").hasRole("USER");
-                    auth.requestMatchers(HttpMethod.POST, "users").hasRole("USER");
-                    auth.requestMatchers(HttpMethod.DELETE, "users/{id}").hasRole("ADMIN");
+                    auth.requestMatchers(HttpMethod.GET, "users").hasAuthority("USER");
+                    auth.requestMatchers(HttpMethod.GET, "users/{id}").hasAuthority("USER");
+                    auth.requestMatchers(HttpMethod.POST, "users").hasAuthority("USER");
+                    auth.requestMatchers(HttpMethod.DELETE, "users/{id}").hasAuthority("ADMIN");
                 })
                 .httpBasic(Customizer.withDefaults())
                 .build();
