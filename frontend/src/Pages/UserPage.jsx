@@ -15,12 +15,12 @@ const fetchGetAllUsers = () => {
 }
 
 const fetchDeleteUserById = (id) => {
-    return fetch("http://localhost:8080/user", {
+    return fetch("http://localhost:8080/user/" + id, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({ id: id }),
+        //body: JSON.stringify({ id: id }),
     }).then((res) => res.json());
 }
 
@@ -44,7 +44,7 @@ const UserPage = () => {
         event.preventDefault();
         fetchDeleteUserById(id).then((res) => {
             console.log(res);
-            document.getElementById(id).remove();
+            //document.getElementById(id).remove();
         })
     }
 
