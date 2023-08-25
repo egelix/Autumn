@@ -3,14 +3,18 @@ package com.example.journey.autumn.model
 import jakarta.persistence.*
 
 @Entity
-@Table(name = "users")
+@Table(name = "_user")
 data class User(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long? = null,
-    val username: String,
-    val password: String
+    var id: Long? = null,
+    @Column(unique = true)
+    var username: String,
+    var password: String,
+    @ElementCollection(fetch = FetchType.EAGER)
+    var authorities: Set<String>
+
 ){
     // Add a default constructor
-    constructor() : this(null, "", "")
+    constructor() : this(null, "", "", emptySet())
 }
