@@ -8,10 +8,12 @@ import StringReverser from './Pages/StringReverser';
 import HomePage from './Pages/HomePage';
 import UserPage from './Pages/UserPage';
 import GamePage from './Pages/GamePage';
+import Layout from './components/Layout/Layout';
 
 const router = createBrowserRouter([
   {
     path: "/",
+    element: <Layout />,
     children: [
       {
         path: "/",
