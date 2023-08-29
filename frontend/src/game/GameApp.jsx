@@ -36,7 +36,7 @@ const GameApp = () => {
       }
     }, [draw])
     return (
-        <canvas ref={canvasRef}  />
+        <canvas ref={canvasRef} tabIndex={"0"} />
     )
 }
 export default GameApp;
