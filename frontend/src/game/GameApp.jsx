@@ -18,6 +18,7 @@ const GameApp = () => {
     useEffect(() => {
     
       const canvas = canvasRef.current
+      canvas.focus();
       let animationFrameId
       const game = new Game(canvas);
       game.initialize();
@@ -35,7 +36,7 @@ const GameApp = () => {
       }
     }, [draw])
     return (
-        <canvas ref={canvasRef} tabIndex={"0"} />
+        <canvas ref={canvasRef}  />
     )
 }
 export default GameApp;
