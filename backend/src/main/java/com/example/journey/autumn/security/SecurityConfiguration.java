@@ -4,8 +4,10 @@ import com.example.journey.autumn.repository.UserRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -32,6 +34,7 @@ public class SecurityConfiguration {
                     auth.requestMatchers(HttpMethod.POST, "users").hasAuthority("USER");
                     auth.requestMatchers(HttpMethod.GET, "users/{id}").hasAuthority("USER");
                     auth.requestMatchers(HttpMethod.DELETE, "users/{id}").hasAuthority("ADMIN");
+                    auth.requestMatchers(HttpMethod.POST, "auth/login").permitAll();
                 })
                 .httpBasic(Customizer.withDefaults())
                 .build();
@@ -47,6 +50,11 @@ public class SecurityConfiguration {
     @Bean
     PasswordEncoder passwordEncoder() {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+        return authenticationConfiguration.getAuthenticationManager();
     }
 
     }
