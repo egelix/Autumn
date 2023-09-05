@@ -21,21 +21,18 @@ class StartupRunner : CommandLineRunner {
         userRepository.deleteAll()
 
         val user1 = User()
-        user1.id = null;
         user1.username = "martin";
         user1.password = passwordEncoder.encode("12345");
         user1.authorities = setOf("USER", "ADMIN")
         userRepository.save(user1);
 
         val user2 = User()
-        user2.id = null;
         user2.username = "seb";
         user2.password = passwordEncoder.encode("12345");
         user2.authorities = setOf("USER")
         userRepository.save(user2);
 
         val user3 = User()
-        user3.id = null;
         user3.username = "kris";
         user3.password = passwordEncoder.encode("12345");
         user3.authorities = setOf("ADMIN")
