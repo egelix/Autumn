@@ -41,6 +41,7 @@ public class SecurityConfiguration {
                     auth.requestMatchers(HttpMethod.GET, "users/{id}").hasAuthority("USER");
                     auth.requestMatchers(HttpMethod.DELETE, "users/{id}").hasAuthority("ADMIN");*/
                     auth.requestMatchers(HttpMethod.POST, "auth/login").permitAll();
+                    auth.requestMatchers(HttpMethod.POST, "users").permitAll();
                     auth.anyRequest().authenticated();
                 })
                 .httpBasic(Customizer.withDefaults())
