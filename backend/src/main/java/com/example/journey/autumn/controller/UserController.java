@@ -24,7 +24,7 @@ public class UserController {
     }
     @PostMapping(produces = "application/json")
     public HttpStatus createUser(@RequestBody Map<String, String> requestBody) {
-        userRepository.save(new User(null, requestBody.get("username"), requestBody.get("password"), new HashSet<>(Set.of("USER"))));
+        userRepository.save(new User(requestBody.get("username"), requestBody.get("password")));
         return HttpStatus.OK;
     }
     @DeleteMapping(value = "/{id}")
@@ -33,9 +33,9 @@ public class UserController {
         return HttpStatus.OK;
     }
     @GetMapping(value = "/{id}", produces = "application/json")
+    public ResponseEntity<User> getUserById(@PathVariable("id") int id) {
+        Optional<User> requestedUser = userRepository.findById((long)id);
 
-    public ResponseEntity<User> getUserbyId(@PathVariable("id") Long id) {
-        Optional<User> requestedUser = userRepository.findById(id);
         return requestedUser.isPresent() ? new ResponseEntity<>(requestedUser.get(), HttpStatus.OK) : new ResponseEntity<>(null, NOT_FOUND);
     }
 }
