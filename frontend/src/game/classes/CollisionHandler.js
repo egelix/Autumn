@@ -76,6 +76,9 @@ class CollisionHandler {
           }
         }
       }
+      if(this.player.velocity.y !== 0) {
+        this.player.state.isGrounded = false;
+      }
     }
     checkScoreBlockCollision() {
         if(
