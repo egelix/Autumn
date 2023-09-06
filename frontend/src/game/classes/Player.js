@@ -25,6 +25,7 @@ class Player {
             isGrounded: false,
         }
         this.score = 0;
+        this.hasPressedJump = false;
     }
     draw() {
         this.context.fillStyle = 'red';
@@ -60,7 +61,7 @@ class Player {
         this.position.x += this.velocity.x;
         }
     jump() {
-        if(!this.state.isGrounded) {
+        if(!this.state.isGrounded || this.hasPressedJump) {
             return;
         }
         this.position.y -= 1;

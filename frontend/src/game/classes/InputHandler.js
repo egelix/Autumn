@@ -12,6 +12,7 @@ class InputHandler {
               break;
             case ' ':
               this.player.jump();
+              this.player.hasPressedJump = true;
               break;
           }
     }
@@ -23,6 +24,8 @@ class InputHandler {
             case 'a':
               this.player.state.isMovingLeft = false;
               break;
+            case ' ':
+              this.player.hasPressedJump = false;
           }
     }
 }
