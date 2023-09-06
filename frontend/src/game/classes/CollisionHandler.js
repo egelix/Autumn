@@ -72,9 +72,15 @@ class CollisionHandler {
   
             this.player.position.y = platformCollisionBlock.position.y - this.player.height; // add "- offset" if using offset
             this.player.state.isGrounded = true;
+            if(!this.player.hasPressedJump) {
+              this.player.canJump = true;
+            }
             break;
           }
         }
+      }
+      if(this.player.velocity.y !== 0) {
+        this.player.state.isGrounded = false;
       }
     }
     checkScoreBlockCollision() {

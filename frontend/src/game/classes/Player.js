@@ -12,7 +12,11 @@ class Player {
         this.width= 20;
         this.height = 20;
         this.speed = 5;
-        this.jumpSpeed = 20;
+        this.jumpSpeed = {
+            acceleration: 1,
+            max: 20,
+            initial: 5,
+        };
         this.gravity = GAME_SETTINGS.GRAVITY;
         this.collisionHandler = new CollisionHandler({
             player: this,
@@ -25,6 +29,12 @@ class Player {
             isGrounded: false,
         }
         this.score = 0;
+        this.hasPressedJump = false;
+        this.canJump = false;
+        this.jumpFrames = {
+            current: 0,
+            max: 10,
+        }
     }
     draw() {
         this.context.fillStyle = 'red';
@@ -39,6 +49,10 @@ class Player {
     }
     applyGravity() {
         this.position.y += this.velocity.y;
+        if(this.canJump && this.hasPressedJump) {
+            this.jump();
+            return;
+        }
         this.velocity.y += this.gravity;
     }
     applyHorizontalMovement() {
@@ -60,12 +74,19 @@ class Player {
         this.position.x += this.velocity.x;
         }
     jump() {
-        if(!this.state.isGrounded) {
+        if(this.state.isGrounded) {
+            this.jumpFrames.current = 0;
+            this.state.isGrounded = false;
+            this.velocity.y = -this.jumpSpeed.initial;
             return;
         }
-        this.position.y -= 1;
-        this.velocity.y = -this.jumpSpeed;
-        this.state.isGrounded = false;
+        if(this.velocity.y < this.jumpSpeed.max) {
+            this.velocity.y -= this.jumpSpeed.acceleration;
+        }
+        this.jumpFrames.current++;
+        if(this.jumpFrames.current >= this.jumpFrames.max) {
+            this.canJump = false;
+        }
     }
     
 }
