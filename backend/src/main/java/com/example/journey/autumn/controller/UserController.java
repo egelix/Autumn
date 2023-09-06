@@ -33,14 +33,9 @@ public class UserController {
         return HttpStatus.OK;
     }
     @GetMapping(value = "/{id}", produces = "application/json")
-
-<<<<<<< HEAD
     public ResponseEntity<User> getUserById(@PathVariable("id") int id) {
         Optional<User> requestedUser = userRepository.findById((long)id);
-=======
-    public ResponseEntity<User> getUserbyId(@PathVariable("id") Long id) {
-        Optional<User> requestedUser = userRepository.findById(id);
->>>>>>> 6fe6cc6e70df12b4c7edcf0693d0c77b8962966a
+
         return requestedUser.isPresent() ? new ResponseEntity<>(requestedUser.get(), HttpStatus.OK) : new ResponseEntity<>(null, NOT_FOUND);
     }
 }
