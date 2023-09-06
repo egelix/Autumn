@@ -11,7 +11,6 @@ class InputHandler {
               this.player.state.isMovingLeft = true;
               break;
             case ' ':
-              this.player.jump();
               this.player.hasPressedJump = true;
               break;
           }
