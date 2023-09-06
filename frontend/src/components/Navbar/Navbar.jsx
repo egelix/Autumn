@@ -6,12 +6,12 @@ export default function Navbar() {
         <div className="container">
             <nav className="navbar">
 					<div className="navbar-div">
-						<Link to="/">Home</Link>
+						<Link to="/account/home">Home</Link>
 					</div>
 					<div className="navbar-div">
-						<Link to="/reverse">Reverse</Link>
-						<Link to="/game">Game</Link>
-						<Link to="/user">Users</Link>
+						<Link to="/account/reverse">Reverse</Link>
+						<Link to="/account/game">Game</Link>
+						<Link to="/account/user">Users</Link>
 					</div>
 				</nav>
         </div>

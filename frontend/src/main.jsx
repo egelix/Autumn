@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {createBrowserRouter, RouterProvider} from "react-router-dom";
 
 import './index.css'
 
@@ -9,26 +9,31 @@ import HomePage from './Pages/HomePage';
 import UserPage from './Pages/UserPage';
 import GamePage from './Pages/GamePage';
 import Layout from './components/Layout/Layout';
+import LoginPage from './Pages/LoginPage';
 
 const router = createBrowserRouter([
   {
     path: "/",
+    element: <LoginPage />
+  },
+  {
+    path: "/account",
     element: <Layout />,
     children: [
       {
-        path: "/",
+        path: "home",
         element: <HomePage />
       },
       {
-        path: "/reverse",
+        path: "reverse",
         element: <StringReverser />
       },
       {
-        path: "/user",
+        path: "user",
         element: <UserPage />
       },
       {
-        path: "/game",
+        path: "game",
         element: <GamePage />
       }
     ]
