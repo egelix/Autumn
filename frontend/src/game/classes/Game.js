@@ -6,9 +6,10 @@ import ScoreBlock from "./ScoreBlock";
 import PlayerGUI from "./PlayerGUI";
 
 class Game {
-    constructor(canvas) {
+    constructor(canvas, playerCharacter) {
         this.canvas = canvas;
         this.c = canvas.getContext('2d');
+        this.playerCharacter = playerCharacter;
         this.platforms = [];
         this.scoreBlock = new ScoreBlock({
             position: {
@@ -30,6 +31,7 @@ class Game {
             context: this.c,
             platforms: this.platforms,
             scoreBlock: this.scoreBlock,
+            playerCharacter: this.playerCharacter,
         });
         this.playerGUI = new PlayerGUI ({
             player: this.player,

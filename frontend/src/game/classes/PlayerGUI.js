@@ -14,6 +14,7 @@ class PlayerGUI {
         this.c.font = "30px Arial";
         this.c.fillText("SCORE: " + this.player.score, 800, 30);
         this.c.fillText("TIME: " + this.displayedTime, 40, 30);
+        this.c.fillText("NAME: " + this.player.name, 40, 500);
     };
     update() {
         this.draw();

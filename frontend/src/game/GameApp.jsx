@@ -1,7 +1,7 @@
 import { useRef, useEffect } from "react";
 import Game from "./classes/Game";
 
-const GameApp = () => {
+const GameApp = ({playerCharacter}) => {
     const canvasRef = useRef(null);
     /* useEffect(() => {
       console.log("hook fired!");
@@ -20,7 +20,7 @@ const GameApp = () => {
       const canvas = canvasRef.current
       canvas.focus();
       let animationFrameId
-      const game = new Game(canvas);
+      const game = new Game(canvas, playerCharacter);
       game.initialize();
       
       
