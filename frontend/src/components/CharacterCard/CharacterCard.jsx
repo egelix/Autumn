@@ -1,7 +1,9 @@
+import "./CharacterCard.css";
 export default function CharacterCard({character, setPlayerCharacter}) {
     return(
-        <div>
-            <h2>{character.name}</h2>
+        <div className="wrapper">
+            <h1>{character.name}</h1>
+            <img src={character.headShotSrc} alt="HEADSHOT"></img>
             <button onClick={() => {setPlayerCharacter(character)}}>Select</button>
         </div>
     )
