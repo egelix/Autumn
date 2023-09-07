@@ -2,7 +2,8 @@ import GAME_SETTINGS from "../constants/GameSettings";
 import CollisionHandler from "./CollisionHandler";
 
 class Player {
-    constructor({position, context, platforms, scoreBlock}) {
+    constructor({position, context, platforms, scoreBlock, playerCharacter}) {
+        this.name = playerCharacter.name;
         this.position = position;
         this.context = context;
         this.velocity = {
