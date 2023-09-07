@@ -10,11 +10,16 @@ import UserPage from './Pages/UserPage';
 import GamePage from './Pages/GamePage';
 import Layout from './components/Layout/Layout';
 import LoginPage from './Pages/LoginPage/LoginPage';
+import GamePageNoLogin from './Pages/GamePageNoLogin'
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <LoginPage />
+  },
+  {
+    path: "/game",
+    element: <GamePageNoLogin />,
   },
   {
     path: "/account",

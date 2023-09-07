@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import LoginField from "../../components/LoginPage/LoginField";
 import CreateField from "../../components/LoginPage/CreateField";
 import "./LoginPage.css";
+import { Link } from "react-router-dom";
 
 export default function LoginPage() {
   const [logInActive, setLogInActive] = useState(false);
@@ -77,7 +78,7 @@ export default function LoginPage() {
         <img src="src/pixel/Welcome.png" alt="welcome logo" />
       </div>
       <div>
-        <button>QUICK PLAY</button> 
+        <Link className="link-button" to={"/game"}>QUICK PLAY</Link> 
       </div>
       <div>
         {login} 
