@@ -33,7 +33,7 @@ class StartupRunner : CommandLineRunner {
         userRepository.save(user2);
 
         val user3 = User()
-        user3.username = "kris";
+        user3.username = "kristian";
         user3.password = passwordEncoder.encode("12345");
         user3.authorities = setOf("ADMIN")
         userRepository.save(user3);
