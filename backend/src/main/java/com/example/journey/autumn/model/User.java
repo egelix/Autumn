@@ -1,8 +1,10 @@
 package com.example.journey.autumn.model;
 
 import jakarta.persistence.*;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -15,6 +17,8 @@ public class User {
     public User(String username, String password) {
         this.username = username;
         this.password = password;
+        this.authorities = new HashSet<>();
+        this.authorities.add("USER");
     }
 
     @Column(unique = true)
