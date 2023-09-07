@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 
 const BASE_URL = "http://localhost:8080";
 
-export default function CreateField({handleNewUser}) {
+export default function CreateField({handleNewUser, setCreateActive}) {
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
 
@@ -30,10 +30,15 @@ export default function CreateField({handleNewUser}) {
 
   return (
     <div className='data-input'>
-        <form onSubmit={handleSubmit}>
-            <input type='text' name='name' onChange={handleNameChange}/>
-            <input type='password' name='password'onChange={handlePasswordChange}/>
-            <button>CREATE!</button>
+      <div className='close-btn-container'>
+        <img src='src/pixel/x.png' onClick={() => setCreateActive(false)} />
+      </div>
+        <form className='input-form' onSubmit={handleSubmit}>
+          <label htmlFor='name'>Name:</label>
+          <input autoFocus type='text' name='name' onChange={handleNameChange}/>
+          <label htmlFor="password">Password:</label>
+          <input type='password' name='password'onChange={handlePasswordChange}/>
+          <button className='submit-btn'>CREATE!</button>
         </form>
     </div>
   )

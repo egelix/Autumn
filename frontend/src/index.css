@@ -24,9 +24,15 @@
   height: 100vh;
 }
 
-label, input {
+label {
   font-family: 'Public Pixel', sans-serif;
+}
 
+input {
+  font-family: 'Public Pixel', sans-serif;
+  padding: 5px;
+  font-size: 0.7em;
+  border: 5px solid black;
 }
 
 a {

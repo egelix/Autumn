@@ -66,8 +66,8 @@ export default function LoginPage() {
         </div>
         <div className="login-container-3">
           {
-            logInActive ? <LoginField newUser={newUser}/> :
-            createActive ? <CreateField handleNewUser={handleNewUser} /> :
+            logInActive ? <LoginField newUser={newUser} setLoginActive={setLogInActive}/> :
+            createActive ? <CreateField handleNewUser={handleNewUser} setCreateActive={setCreateActive}/> :
             <>
               <div className="login-opt">
                 <Link className="option-btn" to={"/game"}>QUICK PLAY</Link> 

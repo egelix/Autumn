@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 const BASE_URL = "http://localhost:8080";
 
-export default function LoginField({newUser}) {
+export default function LoginField({newUser, setLoginActive}) {
   const navigate = useNavigate();
   const [name, setName] = useState(newUser);
   const [password, setPassword] = useState("");
@@ -29,14 +29,18 @@ export default function LoginField({newUser}) {
       .then((data) => localStorage.setItem("jwt", data.accessToken))
       .then(() => navigate("/account/home"));
   };
+
   return (
     <div className='data-input'>
+      <div className='close-btn-container'>
+        <img src='src/pixel/x.png' onClick={() => setLoginActive(false)} />
+      </div>
       <form className='input-form' onSubmit={handleLogin}>
         <label htmlFor='name'>Name:</label>
         <input value={name} autoFocus type="text" name="name" onChange={handleNameChange} />
         <label htmlFor="password">Password:</label>
         <input type="password" name="password" onChange={handlePasswordChange} />
-        <button className='submit-btn'>Login</button>
+        <button type='submit' className='submit-btn'>Login</button>
       </form>
     </div>
   )
