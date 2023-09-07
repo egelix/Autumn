@@ -9,7 +9,7 @@ import HomePage from './Pages/HomePage';
 import UserPage from './Pages/UserPage';
 import GamePage from './Pages/GamePage';
 import Layout from './components/Layout/Layout';
-import LoginPage from './Pages/LoginPage';
+import LoginPage from './Pages/LoginPage/LoginPage';
 
 const router = createBrowserRouter([
   {

@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import LoginField from "../components/LoginPage/LoginField";
-import CreateField from "../components/LoginPage/CreateField";
+import LoginField from "../../components/LoginPage/LoginField";
+import CreateField from "../../components/LoginPage/CreateField";
+import "./LoginPage.css";
 
 export default function LoginPage() {
   const [logInActive, setLogInActive] = useState(false);
   const [createActive, setCreateActive] = useState(false);
+  const [newUser, setNewUser] = useState("")
 
   /*const handleFetchBasicAuth = () => {
     fetch(BASE_URL + "/users", {
@@ -37,6 +39,12 @@ export default function LoginPage() {
       .then((data) => console.log(data));
   };*/
 
+  const handleNewUser = (name) => {
+    setNewUser(name);
+    setCreateActive(false);
+    setLogInActive(true);
+  }
+
   let login = !logInActive ? (
     <button
       onClick={() => {
@@ -47,8 +55,9 @@ export default function LoginPage() {
       login
     </button>
   ) : (
-    <LoginField />
+    <LoginField newUser={newUser}/>
   );
+  
   let create = !createActive ? (
     <button
       onClick={() => {
@@ -59,13 +68,23 @@ export default function LoginPage() {
       CREATE USER
     </button>
   ) : (
-    <CreateField />
+    <CreateField handleNewUser={handleNewUser} />
   );
 
   return (
-    <div>
-      {login}
-      {create}
+    <div className="login-root">
+      <div>
+        <img src="src/pixel/Welcome.png" alt="welcome logo" />
+      </div>
+      <div>
+        <button>QUICK PLAY</button> 
+      </div>
+      <div>
+        {login} 
+      </div>
+      <div>
+        {create}
+      </div>
       {/*<button onClick={handleFetchBasicAuth}>basicAuth</button>
       <button onClick={handleFetch}>fetchWithoutAuth</button>
   <button onClick={handleFetchToken}>fetchWithToken</button>{" "}*/}

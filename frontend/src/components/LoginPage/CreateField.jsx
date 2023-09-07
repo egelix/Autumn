@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 
 const BASE_URL = "http://localhost:8080";
 
-export default function CreateField() {
+export default function CreateField({handleNewUser}) {
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
 
@@ -24,7 +24,8 @@ export default function CreateField() {
             body: JSON.stringify({ username: name, password: password }),
           })
             .then((response) => response.json())
-            .then((data) => console.log(data));
+            .then((data) => console.log(data))
+            .then(() => handleNewUser(name));
     }
 
   return (

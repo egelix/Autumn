@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 
 const BASE_URL = "http://localhost:8080";
 
-export default function LoginField() {
+export default function LoginField({newUser}) {
   const navigate = useNavigate();
-  const [name, setName] = useState("");
+  const [name, setName] = useState(newUser);
   const [password, setPassword] = useState("");
 
   const handleNameChange = (event) => {
@@ -32,7 +32,7 @@ export default function LoginField() {
   return (
     <div>
       <form onSubmit={handleLogin}>
-        <input type="text" name="name" onChange={handleNameChange} />
+        <input value={name} type="text" name="name" onChange={handleNameChange} />
         <input type="text" name="password" onChange={handlePasswordChange} />
         <button>Login</button>
       </form>
