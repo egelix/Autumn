@@ -5,6 +5,7 @@ import com.example.journey.autumn.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -16,6 +17,8 @@ import static org.springframework.http.HttpStatus.NOT_FOUND;
 public class UserController {
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    PasswordEncoder passwordEncoder;
     @GetMapping(produces = "application/json")
     public List<User> getAllUsers() {
         List<User> allUsers = userRepository.findAll();
@@ -24,7 +27,8 @@ public class UserController {
     }
     @PostMapping(produces = "application/json")
     public HttpStatus createUser(@RequestBody Map<String, String> requestBody) {
-        userRepository.save(new User(requestBody.get("username"), requestBody.get("password")));
+        String password = passwordEncoder.encode(requestBody.get("password"));
+        userRepository.save(new User(requestBody.get("username"), password));
         return HttpStatus.OK;
     }
     @DeleteMapping(value = "/{id}")
