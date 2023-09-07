@@ -3,10 +3,10 @@ import GameApp from "../game/GameApp";
 import CharacterSelect from "../components/CharacterSelect/CharacterSelect";
 const GamePage = () => {
     const [playerCharacter, setPlayerCharacter] = useState(null);
-    return (<>
+    return (<div className="page-root">
         <h1>The GAME</h1>
         {playerCharacter === null?<CharacterSelect setPlayerCharacter={setPlayerCharacter} />:<GameApp playerCharacter={playerCharacter}/>}
         
-    </>)
+    </div>)
 }
 export default GamePage;

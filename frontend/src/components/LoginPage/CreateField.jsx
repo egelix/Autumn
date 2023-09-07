@@ -29,10 +29,10 @@ export default function CreateField({handleNewUser}) {
     }
 
   return (
-    <div>
+    <div className='data-input'>
         <form onSubmit={handleSubmit}>
             <input type='text' name='name' onChange={handleNameChange}/>
-            <input type='text' name='password'onChange={handlePasswordChange}/>
+            <input type='password' name='password'onChange={handlePasswordChange}/>
             <button>CREATE!</button>
         </form>
     </div>

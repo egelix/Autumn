@@ -46,45 +46,45 @@ export default function LoginPage() {
     setLogInActive(true);
   }
 
-  let login = !logInActive ? (
-    <button
-      onClick={() => {
-        setLogInActive(true);
-        setCreateActive(false);
-      }}
-    >
-      login
-    </button>
+  /*let login = !logInActive ? (
+    
   ) : (
     <LoginField newUser={newUser}/>
-  );
+  );*/
   
-  let create = !createActive ? (
-    <button
-      onClick={() => {
-        setLogInActive(false);
-        setCreateActive(true);
-      }}
-    >
-      CREATE USER
-    </button>
+  /*let create = !createActive ? (
+    
   ) : (
     <CreateField handleNewUser={handleNewUser} />
-  );
+  );*/
 
   return (
-    <div className="login-root">
-      <div>
-        <img src="src/pixel/Welcome.png" alt="welcome logo" />
-      </div>
-      <div>
-        <Link className="link-button" to={"/game"}>QUICK PLAY</Link> 
-      </div>
-      <div>
-        {login} 
-      </div>
-      <div>
-        {create}
+    <div className="page-root">
+      <div className="login-container">
+        <div className="login-container-2">
+          <img className="welcome-pic" src="src/pixel/Welcome.png" alt="welcome logo" />
+        </div>
+        <div className="login-container-3">
+          {
+            logInActive ? <LoginField newUser={newUser}/> :
+            createActive ? <CreateField handleNewUser={handleNewUser} /> :
+            <>
+              <div className="login-opt">
+                <Link className="option-btn" to={"/game"}>QUICK PLAY</Link> 
+              </div>
+              <div className="login-opt">
+                <button className="login-btn" onClick={() => {setLogInActive(true);}}>
+                  LOGIN
+                </button>
+              </div>
+              <div className="login-opt">
+                <button className="option-btn" onClick={() => {setCreateActive(true);}}>
+                  REGISTER
+                </button>
+              </div>
+            </>
+          }
+        </div>
       </div>
       {/*<button onClick={handleFetchBasicAuth}>basicAuth</button>
       <button onClick={handleFetch}>fetchWithoutAuth</button>

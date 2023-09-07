@@ -30,11 +30,13 @@ export default function LoginField({newUser}) {
       .then(() => navigate("/account/home"));
   };
   return (
-    <div>
-      <form onSubmit={handleLogin}>
-        <input value={name} type="text" name="name" onChange={handleNameChange} />
-        <input type="text" name="password" onChange={handlePasswordChange} />
-        <button>Login</button>
+    <div className='data-input'>
+      <form className='input-form' onSubmit={handleLogin}>
+        <label htmlFor='name'>Name:</label>
+        <input value={name} autoFocus type="text" name="name" onChange={handleNameChange} />
+        <label htmlFor="password">Password:</label>
+        <input type="password" name="password" onChange={handlePasswordChange} />
+        <button className='submit-btn'>Login</button>
       </form>
     </div>
   )
