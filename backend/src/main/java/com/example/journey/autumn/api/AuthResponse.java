@@ -6,12 +6,12 @@ import com.example.journey.autumn.security.UserPrincipal;
 public class AuthResponse {
     private String name;
     private String accessToken;
-    private UserPrincipal user;
+    private int id;
     public AuthResponse() {};
-    public AuthResponse(String name, String accessToken, UserPrincipal user) {
+    public AuthResponse(String name, String accessToken, int id) {
         this.name = name;
         this.accessToken = accessToken;
-        this.user = user;
+        this.id = id;
     }
     public String getName() {
         return name;
@@ -29,11 +29,11 @@ public class AuthResponse {
         this.accessToken = accessToken;
     }
 
-    public UserPrincipal getUser() {
-        return user;
+    public int getId() {
+        return id;
     }
 
-    public void setUser(UserPrincipal user) {
-        this.user = user;
+    public void setId(int id) {
+        this.id = id;
     }
 }

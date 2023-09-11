@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ReactDOM from 'react-dom/client'
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 
@@ -10,7 +10,8 @@ import UserPage from './Pages/UserPage';
 import GamePage from './Pages/GamePage';
 import Layout from './components/Layout/Layout';
 import LoginPage from './Pages/LoginPage/LoginPage';
-import GamePageNoLogin from './Pages/GamePageNoLogin'
+import GamePageNoLogin from './Pages/GamePageNoLogin';
+import UserProvider from './user/UserProvider';
 
 const router = createBrowserRouter([
   {
@@ -45,9 +46,12 @@ const router = createBrowserRouter([
   }
 ]);
 
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <UserProvider>
     <RouterProvider router={router} />
+    </UserProvider>
   </React.StrictMode>
 );
