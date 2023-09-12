@@ -5,17 +5,22 @@ import UserContext from "../../user/UserContext";
 
 export default function Navbar() {
 	const [currentUser, setCurrentUser] = useContext(UserContext);
+	const logout = () => {
+		localStorage.removeItem("jwt");
+		setCurrentUser(null);
+	}
     return (
         <div className="container">
             <nav className="navbar">
 					<div className="navbar-div">
-						<Link to="/account/home">Home</Link>
+						<Link className="link-button" to="/account/home">Home</Link>
 					</div>
-						<p className="navbar-text">Hello {currentUser.name}</p>
+						{currentUser!==null?<p className="navbar-text">Hello {currentUser.name}</p>:<p>text</p>}
 					<div className="navbar-div">
-						<Link to="/account/reverse">Reverse</Link>
-						<Link to="/account/game">Game</Link>
-						<Link to="/account/user">Users</Link>
+						<Link className="link-button" to="/account/reverse">Reverse</Link>
+						<Link className="link-button" to="/account/game">Game</Link>
+						<Link className="link-button" to="/account/user">Users</Link>
+						<button className="link-button" onClick={logout}>Logout</button>
 					</div>
 				</nav>
         </div>

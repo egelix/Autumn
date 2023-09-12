@@ -33,15 +33,15 @@ const router = createBrowserRouter([
       },
       {
         path: "reverse",
-        element: <StringReverser />
+        element: <ProtectedRoute component={StringReverser} />
       },
       {
         path: "user",
-        element: <UserPage />
+        element: <ProtectedRoute component={UserPage} />
       },
       {
         path: "game",
-        element: <GamePage />
+        element: <ProtectedRoute component={GamePage} />
       }
     ]
   }
