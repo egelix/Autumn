@@ -2,7 +2,7 @@ import { useContext } from "react";
 import UserContext from "./UserContext";
 const BASE_URL = "http://localhost:8080";
 
-const fetchUser = (id, currentUser, setCurrentUser) => {
+const fetchUser = (id) => {
     fetch(BASE_URL + "/users/" + id,
     {
         method: "GET",
@@ -13,11 +13,8 @@ const fetchUser = (id, currentUser, setCurrentUser) => {
     })
     .then((res) => res.json())
     .then((data) => {
-        setCurrentUser({
-            id: data.id,
-            name: data.username,
-            authorities: data.authorities,
-        })
+        console.log(data)
+        return data;
     })
 }
 export default fetchUser;

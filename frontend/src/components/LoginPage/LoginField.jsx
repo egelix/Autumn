@@ -30,8 +30,9 @@ export default function LoginField({newUser, setLoginActive}) {
     })
       .then((response) => response.json())
       .then((data) => {
-        localStorage.setItem("jwt", data.accessToken)
-        fetchUser(data.id, currentUser, setCurrentUser)
+        localStorage.setItem("jwt", data.accessToken);
+        const user = data.user;
+        setCurrentUser({name: user.username, id: user.id, authorities: user.authorities});
       })
       .then(() => navigate("/account/home"));
   };

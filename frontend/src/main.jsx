@@ -12,6 +12,7 @@ import Layout from './components/Layout/Layout';
 import LoginPage from './Pages/LoginPage/LoginPage';
 import GamePageNoLogin from './Pages/GamePageNoLogin';
 import UserProvider from './user/UserProvider';
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 
 const router = createBrowserRouter([
   {
@@ -28,7 +29,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "home",
-        element: <HomePage />
+        element: <ProtectedRoute component={HomePage} />
       },
       {
         path: "reverse",
