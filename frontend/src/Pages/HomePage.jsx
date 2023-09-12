@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import UserContext from "../user/UserContext";
 
 const HomePage = () => {
-    
 
     return (
         <div className="page-root">
