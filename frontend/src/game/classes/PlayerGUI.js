@@ -33,7 +33,6 @@ class PlayerGUI {
         this.c.fillText("YOUR SCORE: " + this.player.score, 20, 500);
     }
     displayStartTimer() {
-        console.log(this.startupTimeDisplayed);
         this.timeElapsed = this.startingTime - Date.now();
         this.startupTimeDisplayed = Math.ceil(this.startupMaxTime + (this.timeElapsed / 1000))
         this.c.clearRect(0, 0, GAME_SETTINGS.WIDTH, GAME_SETTINGS.HEIGHT);

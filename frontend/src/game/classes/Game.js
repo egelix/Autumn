@@ -12,15 +12,7 @@ class Game {
         this.c = canvas.getContext('2d');
         this.playerCharacter = playerCharacter;
         this.platforms = [];
-        this.scoreBlock = new ScoreBlock({
-            position: {
-                x: 500,
-                y: GAME_SETTINGS.HEIGHT - 60,
-            },
-            height: 20,
-            width: 20,
-            c: this.c,
-        });
+        this.scoreBlocks = [];
         this.state = "starting";
         this.currentLevel = LEVELS[0];
     }
@@ -31,10 +23,10 @@ class Game {
         this.player = new Player({
             position: {x: 10, y: 10}, 
             context: this.c,
-            platforms: this.platforms,
-            scoreBlock: this.scoreBlock,
+            game: this,
             playerCharacter: this.playerCharacter,
         });
+        this.loadScoreBlocks();
         this.playerGUI = new PlayerGUI ({
             player: this.player,
             context: this.c,
@@ -65,14 +57,48 @@ class Game {
         this.platforms.forEach((platform) => {
             platform.update();
         })
-        this.scoreBlock.update();
+        this.scoreBlocks.forEach((scoreBlock) => {
+            scoreBlock.update();
+        });
         this.player.update();
         this.playerGUI.update();
+        if(this.scoreBlocks.length === 0) {
+            this.loadScoreBlocks();
+        }
     }
     loadPlatforms() {
         this.platforms = this.currentLevel.platforms.map((platform) => {
             return new CollisionBlock({...platform, c: this.c});
         })
+    }
+    loadScoreBlocks() {
+        while(this.scoreBlocks.length < this.currentLevel.maxCoins) {
+            const randomIndex = Math.floor(Math.random() * this.currentLevel.coinPositions.length);
+            const randomBlock = this.currentLevel.coinPositions[randomIndex];
+            const newBlock = new ScoreBlock({
+                position: {
+                    x: randomBlock.x,
+                    y: randomBlock.y,
+                },
+                height: 20,
+                width: 20,
+                c: this.c,
+            })
+            if(this.checkPosition({targetBlock: newBlock, scoreBlocks: this.scoreBlocks})) {
+                continue;
+            }
+            else {
+                this.scoreBlocks.push(newBlock);
+            }
+        }
+    }
+    checkPosition({targetBlock, scoreBlocks}) {
+        scoreBlocks.forEach((block) => {
+            if(this.player.collisionHandler.collision({object1: targetBlock, object2: block})) {
+                return true;
+            }
+        })
+        return false;
     }
 }
 export default Game;
