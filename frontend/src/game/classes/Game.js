@@ -4,6 +4,7 @@ import CollisionBlock from "./CollisionBlock";
 import InputHandler from "./InputHandler";
 import ScoreBlock from "./ScoreBlock";
 import PlayerGUI from "./PlayerGUI";
+import LEVELS from "../constants/LevelData";
 
 class Game {
     constructor(canvas, playerCharacter) {
@@ -21,6 +22,7 @@ class Game {
             c: this.c,
         });
         this.state = "starting";
+        this.currentLevel = LEVELS[0];
     }
     initialize() {
         this.c.canvas.width = GAME_SETTINGS.WIDTH;
@@ -68,42 +70,9 @@ class Game {
         this.playerGUI.update();
     }
     loadPlatforms() {
-        this.platforms.push(new CollisionBlock({
-            position: {
-                x: 0,
-                y: GAME_SETTINGS.HEIGHT - 20,
-            },
-            height: 20,
-            width: GAME_SETTINGS.WIDTH,
-            c: this.c,
-        }));
-        this.platforms.push(new CollisionBlock({
-            position: {
-                x: 20,
-                y: GAME_SETTINGS.HEIGHT - 200,
-            },
-            height: 20,
-            width: 100,
-            c: this.c,
-        }));
-        this.platforms.push(new CollisionBlock({
-            position: {
-                x: 450,
-                y: GAME_SETTINGS.HEIGHT - 200,
-            },
-            height: 20,
-            width: 100,
-            c: this.c,
-        }));
-        this.platforms.push(new CollisionBlock({
-            position: {
-                x: 800,
-                y: GAME_SETTINGS.HEIGHT - 200,
-            },
-            height: 20,
-            width: 100,
-            c: this.c,
-        }));
+        this.platforms = this.currentLevel.platforms.map((platform) => {
+            return new CollisionBlock({...platform, c: this.c});
+        })
     }
 }
 export default Game;

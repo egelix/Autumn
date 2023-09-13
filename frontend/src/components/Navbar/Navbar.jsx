@@ -7,6 +7,7 @@ export default function Navbar() {
 	const [currentUser, setCurrentUser] = useContext(UserContext);
 	const logout = () => {
 		localStorage.removeItem("jwt");
+		localStorage.removeItem("userId");
 		setCurrentUser(null);
 	}
     return (
