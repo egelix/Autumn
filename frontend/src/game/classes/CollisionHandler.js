@@ -1,10 +1,9 @@
 import GAME_SETTINGS from "../constants/GameSettings";
 
 class CollisionHandler {
-    constructor({player, platforms, scoreBlock}) {
+    constructor({player, game}) {
         this.player = player;
-        this.platforms = platforms;
-        this.scoreBlock = scoreBlock;
+        this.game = game;
     }
     collision({ object1, object2 }) {
         return (
@@ -55,8 +54,8 @@ class CollisionHandler {
           }
         } */
         // platform collision blocks
-    for (let i = 0; i < this.platforms.length; i++) {
-        const platformCollisionBlock = this.platforms[i];
+    for (let i = 0; i < this.game.platforms.length; i++) {
+        const platformCollisionBlock = this.game.platforms[i];
   
         if (
           this.platformCollision({
@@ -84,15 +83,30 @@ class CollisionHandler {
       }
     }
     checkScoreBlockCollision() {
+      for(let i = 0; i < this.game.scoreBlocks.length; i++){
+        const scoreBlock = this.game.scoreBlocks[i];
         if(
             this.collision({
                 object1: this.player,
-                object2: this.scoreBlock,
+                object2: scoreBlock,
             })
         ) {
-            this.scoreBlock.generateNewPosition(this);
             this.player.score++;
+            this.game.scoreBlocks.splice(i, 1);
+            return;
         }
+      }
+    }
+    checkPowerUpCollision() {
+      if(
+        this.collision({
+          object1: this.player,
+          object2: this.game.powerUp,
+        })
+      )
+      {
+        this.game.powerUp.activate(this.game);
+      }
     }
 }
 export default CollisionHandler;

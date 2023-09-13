@@ -2,7 +2,7 @@ import GAME_SETTINGS from "../constants/GameSettings";
 import CollisionHandler from "./CollisionHandler";
 
 class Player {
-    constructor({position, context, platforms, scoreBlock, playerCharacter}) {
+    constructor({position, context, playerCharacter, game}) {
         this.name = playerCharacter.name;
         this.position = position;
         this.context = context;
@@ -21,8 +21,7 @@ class Player {
         this.gravity = GAME_SETTINGS.GRAVITY;
         this.collisionHandler = new CollisionHandler({
             player: this,
-            platforms: platforms,
-            scoreBlock: scoreBlock,
+            game: game,
         })
         this.state = {
             isMovingRight: false,
@@ -47,6 +46,7 @@ class Player {
         this.applyGravity();
         this.collisionHandler.checkScoreBlockCollision();
         this.collisionHandler.checkForVerticalCollisions();
+        this.collisionHandler.checkPowerUpCollision();
     }
     applyGravity() {
         this.position.y += this.velocity.y;

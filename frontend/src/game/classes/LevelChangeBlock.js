@@ -1,16 +1,15 @@
-import GAME_SETTINGS from "../constants/GameSettings";
 import CollisionBlock from "./CollisionBlock";
 
-class ScoreBlock extends CollisionBlock {
+class LevelChangeBlock extends CollisionBlock {
     constructor({ position, height, width, c }) {
         super({ position, height, width, c });
     }
     draw() {
-        this.c.fillStyle = 'rgb(0, 255, 0)';
+        this.c.fillStyle = 'rgb(255, 0, 255)';
         this.c.fillRect(this.position.x, this.position.y, this.width, this.height);
-    }
-    update() {
-        this.draw();
+      }
+    activate(game) {
+        game.pickRandomLevel();
     }
 }
-export default ScoreBlock;
+export default LevelChangeBlock;
