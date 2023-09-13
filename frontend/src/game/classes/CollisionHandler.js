@@ -91,6 +91,7 @@ class CollisionHandler {
                 object2: scoreBlock,
             })
         ) {
+            console.log(scoreBlock);
             this.player.score++;
             this.game.scoreBlocks.splice(i, 1);
             return;

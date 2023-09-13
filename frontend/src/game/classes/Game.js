@@ -15,6 +15,12 @@ class Game {
         this.scoreBlocks = [];
         this.state = "starting";
         this.currentLevel = LEVELS[0];
+        this.lastScoreBlock = {
+            position: {
+                x: 0,
+                y: 0,
+            }
+        }
     }
     initialize() {
         this.c.canvas.width = GAME_SETTINGS.WIDTH;
@@ -62,9 +68,7 @@ class Game {
         });
         this.player.update();
         this.playerGUI.update();
-        if(this.scoreBlocks.length === 0) {
-            this.loadScoreBlocks();
-        }
+        this.checkScoreBlocks();
     }
     loadPlatforms() {
         this.platforms = this.currentLevel.platforms.map((platform) => {
@@ -72,33 +76,30 @@ class Game {
         })
     }
     loadScoreBlocks() {
-        while(this.scoreBlocks.length < this.currentLevel.maxCoins) {
-            const randomIndex = Math.floor(Math.random() * this.currentLevel.coinPositions.length);
-            const randomBlock = this.currentLevel.coinPositions[randomIndex];
-            const newBlock = new ScoreBlock({
+        const randomPositions = [...this.currentLevel.coinPositions]
+            .filter((position) => this.lastScoreBlock.position.x !== position.x && this.lastScoreBlock.position.y !== position.y)
+            .sort(() => 0.5 - Math.random())
+            .slice(0, this.currentLevel.maxCoins);
+            console.log(randomPositions);
+        this.scoreBlocks = randomPositions.map((position) => {
+            return new ScoreBlock({
                 position: {
-                    x: randomBlock.x,
-                    y: randomBlock.y,
+                    x: position.x,
+                    y: position.y,
                 },
-                height: 20,
                 width: 20,
+                height: 20,
                 c: this.c,
             })
-            if(this.checkPosition({targetBlock: newBlock, scoreBlocks: this.scoreBlocks})) {
-                continue;
-            }
-            else {
-                this.scoreBlocks.push(newBlock);
-            }
-        }
-    }
-    checkPosition({targetBlock, scoreBlocks}) {
-        scoreBlocks.forEach((block) => {
-            if(this.player.collisionHandler.collision({object1: targetBlock, object2: block})) {
-                return true;
-            }
         })
-        return false;
+    }
+    checkScoreBlocks() {
+        if(this.scoreBlocks.length === 1) {
+            this.lastScoreBlock = this.scoreBlocks[0];
+        }
+        if(this.scoreBlocks.length === 0) {
+            this.loadScoreBlocks();
+        }
     }
 }
 export default Game;
