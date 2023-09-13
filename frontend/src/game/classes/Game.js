@@ -5,6 +5,7 @@ import InputHandler from "./InputHandler";
 import ScoreBlock from "./ScoreBlock";
 import PlayerGUI from "./PlayerGUI";
 import LEVELS from "../constants/LevelData";
+import LevelChangeBlock from "./LevelChangeBlock";
 
 class Game {
     constructor(canvas, playerCharacter) {
@@ -21,11 +22,18 @@ class Game {
                 y: 0,
             }
         }
+        this.powerUp = {
+            position: {
+                x: 0,
+                y: 0,
+            }
+        };
     }
     initialize() {
         this.c.canvas.width = GAME_SETTINGS.WIDTH;
         this.c.canvas.height = GAME_SETTINGS.HEIGHT;
         this.loadPlatforms();
+        this.spawnPowerUp();
         this.player = new Player({
             position: {x: 10, y: 10}, 
             context: this.c,
@@ -66,6 +74,7 @@ class Game {
         this.scoreBlocks.forEach((scoreBlock) => {
             scoreBlock.update();
         });
+        this.powerUp.update();
         this.player.update();
         this.playerGUI.update();
         this.checkScoreBlocks();
@@ -80,7 +89,6 @@ class Game {
             .filter((position) => this.lastScoreBlock.position.x !== position.x && this.lastScoreBlock.position.y !== position.y)
             .sort(() => 0.5 - Math.random())
             .slice(0, this.currentLevel.maxCoins);
-            console.log(randomPositions);
         this.scoreBlocks = randomPositions.map((position) => {
             return new ScoreBlock({
                 position: {
@@ -100,6 +108,33 @@ class Game {
         if(this.scoreBlocks.length === 0) {
             this.loadScoreBlocks();
         }
+    }
+    pickRandomLevel() {
+        const randomLevels = [...LEVELS]
+        .filter((level) => level.name !== this.currentLevel.name)
+        .sort(() => 0.5 - Math.random());
+        this.currentLevel = randomLevels[0];
+        this.scoreBlocks = [];
+        this.platforms = [];
+        this.loadPlatforms();
+        this.loadScoreBlocks();
+        this.spawnPowerUp();
+    }
+    spawnPowerUp() {
+        const randomIndex = Math.floor(Math.random() * this.currentLevel.powerUpPositions.length);
+        const newPosition = this.currentLevel.powerUpPositions[randomIndex];
+        if(this.powerUp.position.x === newPosition.x && this.powerUp.position.y === newPosition.y) {
+            this.spawnPowerUp();
+        }
+        this.powerUp = new LevelChangeBlock({
+            position: {
+                x: newPosition.x,
+                y: newPosition.y,
+            },
+            height: 20,
+            width: 20,
+            c: this.c,
+        })
     }
 }
 export default Game;

@@ -91,11 +91,21 @@ class CollisionHandler {
                 object2: scoreBlock,
             })
         ) {
-            console.log(scoreBlock);
             this.player.score++;
             this.game.scoreBlocks.splice(i, 1);
             return;
         }
+      }
+    }
+    checkPowerUpCollision() {
+      if(
+        this.collision({
+          object1: this.player,
+          object2: this.game.powerUp,
+        })
+      )
+      {
+        this.game.powerUp.activate(this.game);
       }
     }
 }

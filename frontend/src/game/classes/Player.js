@@ -46,6 +46,7 @@ class Player {
         this.applyGravity();
         this.collisionHandler.checkScoreBlockCollision();
         this.collisionHandler.checkForVerticalCollisions();
+        this.collisionHandler.checkPowerUpCollision();
     }
     applyGravity() {
         this.position.y += this.velocity.y;
