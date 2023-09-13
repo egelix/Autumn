@@ -7,8 +7,10 @@ class PlayerGUI {
         this.game = game;
         this.startingTime = Date.now();
         this.timeElapsed = 0;
-        this.timeLimit = 20;
+        this.startupMaxTime = 3;
+        this.timeLimit = 20 + this.startupMaxTime;
         this.displayedTime = this.timeLimit;
+        this.startupTimeDisplayed = 1;
     };
     draw() {
         this.c.font = "30px Arial";
@@ -19,7 +21,7 @@ class PlayerGUI {
     update() {
         this.draw();
         this.timeElapsed = this.startingTime - Date.now();
-        this.displayedTime = Math.floor(this.timeLimit + (this.timeElapsed / 1000));
+        this.displayedTime = Math.ceil(this.timeLimit + (this.timeElapsed / 1000));
         if(this.displayedTime === 0) {
             this.game.state = "finished";
         }
@@ -29,6 +31,17 @@ class PlayerGUI {
         this.c.font = "100px Arial";
         this.c.fillText("GAME OVER", 30, 300);
         this.c.fillText("YOUR SCORE: " + this.player.score, 20, 500);
+    }
+    displayStartTimer() {
+        console.log(this.startupTimeDisplayed);
+        this.timeElapsed = this.startingTime - Date.now();
+        this.startupTimeDisplayed = Math.ceil(this.startupMaxTime + (this.timeElapsed / 1000))
+        this.c.clearRect(0, 0, GAME_SETTINGS.WIDTH, GAME_SETTINGS.HEIGHT);
+        this.c.font = "100px Arial";
+        this.c.fillText(this.startupTimeDisplayed, 450, 200);
+        if(this.startupTimeDisplayed === 0) {
+            this.game.state = "running";
+        }
     }
 }
 export default PlayerGUI;

@@ -20,7 +20,7 @@ class Game {
             width: 20,
             c: this.c,
         });
-        this.state = "running";
+        this.state = "starting";
     }
     initialize() {
         this.c.canvas.width = GAME_SETTINGS.WIDTH;
@@ -51,6 +51,10 @@ class Game {
         this.c.fillRect(0, 0, this.canvas.width, this.canvas.height);
     }
     update() {
+        if(this.state === "starting") {
+            this.playerGUI.displayStartTimer();
+            return;
+        }
         if(this.state === "finished") {
             this.playerGUI.displayGameOver();
             return;
