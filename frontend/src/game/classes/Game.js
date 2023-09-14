@@ -16,6 +16,7 @@ class Game {
         this.scoreBlocks = [];
         this.state = "starting";
         this.currentLevel = LEVELS[0];
+        this.currentLevel.currentCoins = this.currentLevel.maxCoins;
         this.lastScoreBlock = {
             position: {
                 x: 0,
@@ -85,6 +86,7 @@ class Game {
         })
     }
     loadScoreBlocks() {
+        
         const randomPositions = [...this.currentLevel.coinPositions]
             .filter((position) => {
                 if(this.lastScoreBlock.position.x === position.x) {
@@ -95,7 +97,7 @@ class Game {
                 }
             })
             .sort(() => 0.5 - Math.random())
-            .slice(0, this.currentLevel.maxCoins);
+            .slice(0, this.currentLevel.currentCoins);
         this.scoreBlocks = randomPositions.map((position) => {
             return new ScoreBlock({
                 position: {
@@ -107,6 +109,9 @@ class Game {
                 c: this.c,
             })
         })
+        if(this.currentLevel.currentCoins > 1) {
+            this.currentLevel.currentCoins--;
+        }
     }
     checkScoreBlocks() {
         if(this.scoreBlocks.length === 1) {
@@ -121,6 +126,7 @@ class Game {
         .filter((level) => level.name !== this.currentLevel.name)
         .sort(() => 0.5 - Math.random());
         this.currentLevel = randomLevels[0];
+        this.currentLevel.currentCoins = this.currentLevel.maxCoins;
         this.scoreBlocks = [];
         this.platforms = [];
         this.loadPlatforms();
@@ -144,7 +150,6 @@ class Game {
         })
         const typeIndex = Math.floor(Math.random() * GAME_SETTINGS.POWERUP_TYPES.length);
         const randomType = GAME_SETTINGS.POWERUP_TYPES[typeIndex];
-        console.log(randomType);
         Object.setPrototypeOf(this.powerUp, randomType);
     }
     spawnAllCoins() {
