@@ -10,6 +10,7 @@ class CoinSpawnBlock extends CollisionBlock {
       }
     activate(game) {
         game.spawnAllCoins();
+        game.playerGUI.timeLimit -= 5;
     }
 }
 export default CoinSpawnBlock;

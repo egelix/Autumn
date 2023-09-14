@@ -10,6 +10,7 @@ class LevelChangeBlock extends CollisionBlock {
       }
     activate(game) {
         game.pickRandomLevel();
+        game.playerGUI.timeLimit -= 2;
     }
 }
 export default LevelChangeBlock;
