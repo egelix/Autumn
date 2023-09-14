@@ -135,7 +135,24 @@ class Game {
             width: GAME_SETTINGS.BLOCK_SIZE,
             c: this.c,
         })
-        Object.setPrototypeOf(this.powerUp, LevelChangeBlock.prototype);
+        const typeIndex = Math.floor(Math.random() * GAME_SETTINGS.POWERUP_TYPES.length);
+        const randomType = GAME_SETTINGS.POWERUP_TYPES[typeIndex];
+        console.log(randomType);
+        Object.setPrototypeOf(this.powerUp, randomType);
+    }
+    spawnAllCoins() {
+        this.scoreBlocks = this.currentLevel.coinPositions.map((position) => {
+            return new ScoreBlock({
+                position: {
+                    x: position.x,
+                    y: position.y,
+                },
+                width: GAME_SETTINGS.BLOCK_SIZE,
+                height: GAME_SETTINGS.BLOCK_SIZE,
+                c: this.c,
+            })
+        })
+        this.spawnPowerUp();
     }
 }
 export default Game;
