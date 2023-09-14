@@ -126,7 +126,7 @@ class Game {
         if(this.powerUp.position.x === newPosition.x && this.powerUp.position.y === newPosition.y) {
             this.spawnPowerUp();
         }
-        this.powerUp = new LevelChangeBlock({
+        this.powerUp = new CollisionBlock({
             position: {
                 x: newPosition.x,
                 y: newPosition.y,
@@ -135,6 +135,24 @@ class Game {
             width: GAME_SETTINGS.BLOCK_SIZE,
             c: this.c,
         })
+        const typeIndex = Math.floor(Math.random() * GAME_SETTINGS.POWERUP_TYPES.length);
+        const randomType = GAME_SETTINGS.POWERUP_TYPES[typeIndex];
+        console.log(randomType);
+        Object.setPrototypeOf(this.powerUp, randomType);
+    }
+    spawnAllCoins() {
+        this.scoreBlocks = this.currentLevel.coinPositions.map((position) => {
+            return new ScoreBlock({
+                position: {
+                    x: position.x,
+                    y: position.y,
+                },
+                width: GAME_SETTINGS.BLOCK_SIZE,
+                height: GAME_SETTINGS.BLOCK_SIZE,
+                c: this.c,
+            })
+        })
+        this.spawnPowerUp();
     }
 }
 export default Game;
