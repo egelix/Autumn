@@ -28,7 +28,11 @@ const LevelPreview = ({level}) => {
         drawLevelPreview(level, c);
       }, [])
     return(
-        <canvas ref={canvasRef} />
+        <div className="level-preview">
+            <h2>{level.name}</h2>
+            <canvas ref={canvasRef} />
+            <p>Max coins: {level.maxCoins}</p>
+        </div>
     )
 }
 export default LevelPreview;
