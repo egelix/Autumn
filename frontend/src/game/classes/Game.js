@@ -95,8 +95,8 @@ class Game {
                     x: position.x,
                     y: position.y,
                 },
-                width: 20,
-                height: 20,
+                width: GAME_SETTINGS.BLOCK_SIZE,
+                height: GAME_SETTINGS.BLOCK_SIZE,
                 c: this.c,
             })
         })
@@ -131,8 +131,8 @@ class Game {
                 x: newPosition.x,
                 y: newPosition.y,
             },
-            height: 20,
-            width: 20,
+            height: GAME_SETTINGS.BLOCK_SIZE,
+            width: GAME_SETTINGS.BLOCK_SIZE,
             c: this.c,
         })
     }
