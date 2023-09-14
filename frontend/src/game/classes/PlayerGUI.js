@@ -22,7 +22,7 @@ class PlayerGUI {
         this.draw();
         this.timeElapsed = this.startingTime - Date.now();
         this.displayedTime = Math.ceil(this.timeLimit + (this.timeElapsed / 1000));
-        if(this.displayedTime === 0) {
+        if(this.displayedTime <= 0) {
             this.game.state = "finished";
         }
     }

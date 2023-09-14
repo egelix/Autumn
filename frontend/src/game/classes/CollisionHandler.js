@@ -92,6 +92,7 @@ class CollisionHandler {
             })
         ) {
             this.player.score++;
+            this.game.playerGUI.timeLimit++;
             this.game.scoreBlocks.splice(i, 1);
             return;
         }
