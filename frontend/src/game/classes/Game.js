@@ -86,7 +86,14 @@ class Game {
     }
     loadScoreBlocks() {
         const randomPositions = [...this.currentLevel.coinPositions]
-            .filter((position) => this.lastScoreBlock.position.x !== position.x && this.lastScoreBlock.position.y !== position.y)
+            .filter((position) => {
+                if(this.lastScoreBlock.position.x === position.x) {
+                    return this.lastScoreBlock.position.y !== position.y;
+                }
+                else {
+                    return true;
+                }
+            })
             .sort(() => 0.5 - Math.random())
             .slice(0, this.currentLevel.maxCoins);
         this.scoreBlocks = randomPositions.map((position) => {
