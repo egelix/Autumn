@@ -101,6 +101,10 @@ canvas {
   margin-right: auto;
   display: block;
 }
+.level-preview-container {
+  display: flex;
+  gap: 1em;
+}
 
 /*@media (prefers-color-scheme: light) {
   :root {

@@ -1,4 +1,5 @@
 import GAME_SETTINGS from "../../game/constants/GameSettings";
+import { useRef, useEffect } from "react";
 
 const LevelPreview = ({level}) => {
     const SCALE = 1/2;
@@ -7,7 +8,7 @@ const LevelPreview = ({level}) => {
         c.canvas.width = GAME_SETTINGS.WIDTH * SCALE;
         c.canvas.height = GAME_SETTINGS.HEIGHT * SCALE;
         c.fillStyle = 'white';
-        c.fillRect(0, 0, this.canvas.width, this.canvas.height);
+        c.fillRect(0, 0, c.canvas.width, c.canvas.height);
         c.fillStyle = 'rgb(0, 0, 255)';
         level.platforms.forEach((platform) => {
             c.fillRect(platform.position.x * SCALE, platform.position.y * SCALE, platform.width * SCALE, platform.height * SCALE);

@@ -13,6 +13,7 @@ import LoginPage from './Pages/LoginPage/LoginPage';
 import GamePageNoLogin from './Pages/GamePageNoLogin';
 import UserProvider from './user/UserProvider';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
+import LevelPreviewPage from './Pages/LevelPreviewPage';
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
   {
     path: "/game",
     element: <GamePageNoLogin />,
+  },
+  {
+    path: "/levels",
+    element: <LevelPreviewPage />,
   },
   {
     path: "/account",
