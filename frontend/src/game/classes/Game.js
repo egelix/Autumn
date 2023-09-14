@@ -126,7 +126,7 @@ class Game {
         if(this.powerUp.position.x === newPosition.x && this.powerUp.position.y === newPosition.y) {
             this.spawnPowerUp();
         }
-        this.powerUp = new LevelChangeBlock({
+        this.powerUp = new CollisionBlock({
             position: {
                 x: newPosition.x,
                 y: newPosition.y,
@@ -135,6 +135,7 @@ class Game {
             width: GAME_SETTINGS.BLOCK_SIZE,
             c: this.c,
         })
+        Object.setPrototypeOf(this.powerUp, LevelChangeBlock.prototype);
     }
 }
 export default Game;
