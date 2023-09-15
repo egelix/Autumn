@@ -30,7 +30,7 @@ public class UserController {
     @PostMapping(produces = "application/json")
     public HttpStatus createUser(@RequestBody Map<String, String> requestBody) {
         String password = passwordEncoder.encode(requestBody.get("password"));
-        userRepository.save(new User(requestBody.get("username"), password));
+        userRepository.save(new User(requestBody.get("username"), password, 0));
         return HttpStatus.OK;
     }
     @DeleteMapping(value = "/{id}")
