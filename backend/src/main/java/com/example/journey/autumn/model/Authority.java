@@ -1,8 +1,10 @@
+/*
 package com.example.journey.autumn.model;
 
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "authorities")
 public class Authority {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,3 +38,4 @@ public class Authority {
         this.name = name;
     }
 }
+*/

@@ -24,7 +24,7 @@ public class UserController {
     @GetMapping(produces = "application/json")
     public List<User> getAllUsers() {
         List<User> allUsers = userRepository.findAll();
-        System.out.println(allUsers);
+        System.out.println(allUsers.get(0).getAuthorities());
         return allUsers;
     }
     @PostMapping(produces = "application/json")

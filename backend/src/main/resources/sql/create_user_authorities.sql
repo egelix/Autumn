@@ -19,13 +19,11 @@ VALUES
 ('testuser7', '$2a$12$NEdllVrr03cngKTQcrra2er13R3z3OuNH7MhFSBfXQMHX/SoSEWty');
 
 CREATE TABLE authorities (
-	id serial NOT NULL PRIMARY KEY,
 	user_id int NOT NULL,
-	name varchar(50) NOT NULL,
-	CONSTRAINT FK_authorities__user FOREIGN KEY (user_id) REFERENCES _user (user_id)
+	authority varchar(50) NOT NULL
 );
 
-INSERT INTO authorities (user_id, name)
+INSERT INTO authorities (user_id, authority)
 VALUES 
 (1, 'USER'),
 (1, 'ADMIN'),

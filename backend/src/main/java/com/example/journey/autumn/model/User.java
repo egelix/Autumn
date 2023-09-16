@@ -1,5 +1,6 @@
 package com.example.journey.autumn.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,7 +22,7 @@ public class User {
         this.password = password;
         this.authorities = new HashSet<>();
         this.highscore = highscore;
-//        this.authorities.add("USER");
+        this.authorities.add("USER");
     }
 
     @Column(unique = true)
@@ -29,8 +30,11 @@ public class User {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
     private long highscore;
-    @OneToMany(mappedBy = "_user", fetch = FetchType.EAGER)
-    private Set<Authority> authorities;
+    @JsonIgnore
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "authorities", joinColumns = @JoinColumn(name = "user_id"))
+    @Column(name = "authority")
+    private Set<String> authorities;
 
     public User() {
 
@@ -68,11 +72,12 @@ public class User {
         this.highscore = highscore;
     }
 
-    public Set<Authority> getAuthorities() {
+    public Set<String> getAuthorities() {
         return authorities;
     }
 
-    public void setAuthorities(Set<Authority> authorities) {
+    public void setAuthorities(Set<String> authorities) {
         this.authorities = authorities;
     }
+
 }

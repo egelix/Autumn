@@ -1,6 +1,6 @@
 package com.example.journey.autumn.security;
 
-import com.example.journey.autumn.model.Authority;
+//import com.example.journey.autumn.model.Authority;
 import com.example.journey.autumn.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -18,7 +18,7 @@ public class UserPrincipal implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        Set<Authority> authorities = user.getAuthorities();
+        Set<String> authorities = user.getAuthorities();
         return AuthorityUtils.createAuthorityList(authorities.toArray(new String[authorities.size()]));
     }
 
