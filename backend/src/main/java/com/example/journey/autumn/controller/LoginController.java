@@ -17,7 +17,7 @@ public class LoginController {
     private UserRepository userRepository;
 
 
-    @RequestMapping("/user")
+    @RequestMapping("/auth/login")
     public User getUserDetailsAfterLogin(Authentication authentication) {
         Optional<User> user = userRepository.findByUsername(authentication.getName());
         if (user.isPresent()) {
