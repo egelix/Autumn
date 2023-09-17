@@ -44,7 +44,7 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.GET, "users").hasAuthority("USER")
                         .requestMatchers(HttpMethod.GET, "users/{id}").hasAuthority("USER")
                         .requestMatchers(HttpMethod.DELETE, "users/{id}").hasAuthority("ADMIN")
-                        .requestMatchers(HttpMethod.POST, "auth/login").permitAll()
+                        .requestMatchers(HttpMethod.POST, "auth/login").authenticated()
                         .requestMatchers(HttpMethod.POST, "users").permitAll()
                         .anyRequest().authenticated()
                 );
