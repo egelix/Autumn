@@ -6,7 +6,7 @@ import UserContext from "../../user/UserContext";
 export default function Navbar() {
 	const [currentUser, setCurrentUser] = useContext(UserContext);
 	const logout = () => {
-		localStorage.removeItem("jwt");
+		localStorage.removeItem("Authorization");
 		localStorage.removeItem("userId");
 		setCurrentUser(null);
 	}

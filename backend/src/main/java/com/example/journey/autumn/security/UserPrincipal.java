@@ -1,5 +1,6 @@
 package com.example.journey.autumn.security;
 
+//import com.example.journey.autumn.model.Authority;
 import com.example.journey.autumn.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;

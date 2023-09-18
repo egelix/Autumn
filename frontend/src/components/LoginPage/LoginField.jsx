@@ -2,6 +2,7 @@ import React, {useState, useContext} from 'react';
 import { useNavigate } from "react-router-dom";
 import fetchUser from '../../user/fetchUser';
 import UserContext from '../../user/UserContext';
+import { Buffer } from 'buffer';
 
 const BASE_URL = "http://localhost:8080";
 
@@ -22,16 +23,17 @@ export default function LoginField({newUser, setLoginActive}) {
   const handleLogin = (event) => {
     event.preventDefault();
     fetch(BASE_URL + "/auth/login", {
-      method: "POST",
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ name: name, password: password }),
+        "Authorization": "Basic " + Buffer.from(name + ":" + password).toString("base64")
+      }
+      // body: JSON.stringify({ name: name, password: password }),
     })
-      .then((response) => response.json())
-      .then((data) => {
-        localStorage.setItem("jwt", data.accessToken);
-        const user = data.user;
+    .then(response => {localStorage.setItem("Authorization", response.headers.get("Authorization"));
+                        return response.json();})
+      .then(user => {
+        console.log(user.id)
         localStorage.setItem("userId", user.id);
         setCurrentUser({name: user.username, id: user.id, authorities: user.authorities});
       })
