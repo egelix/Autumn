@@ -8,8 +8,8 @@ export default function Navbar() {
 	const logout = () => {
 		localStorage.removeItem("Authorization");
 		localStorage.removeItem("userId");
+		setCurrentUser(null);
 	}
-	console.log(currentUser);
     return (
         <div className="container">
             <nav className="navbar">
