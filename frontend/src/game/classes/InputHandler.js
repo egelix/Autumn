@@ -3,6 +3,7 @@ class InputHandler {
         this.player = player;
     }
     handleKeyDown(event) {
+      event.preventDefault();
         switch (event.key) {
             case 'd':
               this.player.state.isMovingRight = true;
@@ -16,6 +17,7 @@ class InputHandler {
           }
     }
     handleKeyUp(event) {
+      event.preventDefault();
         switch (event.key) {
             case 'd':
               this.player.state.isMovingRight = false;

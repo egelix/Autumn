@@ -8,15 +8,15 @@ export default function Navbar() {
 	const logout = () => {
 		localStorage.removeItem("Authorization");
 		localStorage.removeItem("userId");
-		setCurrentUser(null);
 	}
+	console.log(currentUser);
     return (
         <div className="container">
             <nav className="navbar">
 					<div className="navbar-div">
 						<Link className="link-button" to="/account/home">Home</Link>
 					</div>
-						{currentUser!==null?<p className="navbar-text">Hello {currentUser.name}</p>:<p>text</p>}
+						{currentUser!==null?<p className="navbar-text">Hello {currentUser.username}</p>:<p>text</p>}
 					<div className="navbar-div">
 						<Link className="link-button" to="/account/reverse">Reverse</Link>
 						<Link className="link-button" to="/account/game">Game</Link>
