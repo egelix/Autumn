@@ -5,12 +5,16 @@ class LevelChangeBlock extends CollisionBlock {
         super({ position, height, width, c });
     }
     draw() {
-        this.c.fillStyle = 'rgb(255, 0, 255)';
-        this.c.fillRect(this.position.x, this.position.y, this.width, this.height);
+        this.c.drawImage(this.currentImage, this.position.x, this.position.y, this.width, this.height);
       }
     activate(game) {
         game.pickRandomLevel();
         game.playerGUI.timeLimit -= 2;
+    }
+    initializeImage() {
+        const img = new Image()
+        img.src = "/src/game/assets/sprites/items/levelchangeblock/level_change1.png";
+        this.currentImage = img;
     }
 }
 export default LevelChangeBlock;
