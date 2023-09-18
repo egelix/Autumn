@@ -6,7 +6,9 @@ import jakarta.persistence.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -23,6 +25,7 @@ public class User {
         this.authorities = new HashSet<>();
         this.highscore = highscore;
         this.authorities.add("USER");
+        this.gameRuns = new ArrayList<>();
     }
 
     @Column(unique = true)
@@ -35,6 +38,8 @@ public class User {
     @CollectionTable(name = "authorities", joinColumns = @JoinColumn(name = "user_id"))
     @Column(name = "authority")
     private Set<String> authorities;
+    @OneToMany(mappedBy = "user")
+    private List<GameRun> gameRuns;
 
     public User() {
 
@@ -80,4 +85,11 @@ public class User {
         this.authorities = authorities;
     }
 
+    public List<GameRun> getGameRuns() {
+        return gameRuns;
+    }
+
+    public void setGameRuns(List<GameRun> gameRuns) {
+        this.gameRuns = gameRuns;
+    }
 }
