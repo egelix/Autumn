@@ -35,9 +35,9 @@ export default function LoginField({newUser, setLoginActive}) {
       .then(user => {
         console.log(user.id)
         localStorage.setItem("userId", user.id);
-      //   setCurrentUser({name: user.username, id: user.id, authorities: user.authorities});
+        setCurrentUser({name: user.username, id: user.id, authorities: user.authorities});
       })
-      //.then(() => navigate("/account/home"));
+      .then(() => navigate("/account/home"));
   };
 
   return (

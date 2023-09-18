@@ -9,7 +9,7 @@ const fetchUser = () => {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + localStorage.getItem("jwt"),
+            "Authorization": localStorage.getItem("Authorization"),
           }
     })
     .then((res) => res.json())
