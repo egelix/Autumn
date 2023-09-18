@@ -151,6 +151,7 @@ class Game {
         const typeIndex = Math.floor(Math.random() * GAME_SETTINGS.POWERUP_TYPES.length);
         const randomType = GAME_SETTINGS.POWERUP_TYPES[typeIndex];
         Object.setPrototypeOf(this.powerUp, randomType);
+        this.powerUp.initializeImage();
     }
     spawnAllCoins() {
         this.scoreBlocks = this.currentLevel.coinPositions.map((position) => {
