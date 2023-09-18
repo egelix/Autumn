@@ -1,5 +1,6 @@
 package com.example.journey.autumn.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -17,9 +18,21 @@ public class GameRun {
     private String character;
     @Column
     private Date date;
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
+    public GameRun(int score, String character, User user) {
+        this.score = score;
+        this.character = character;
+        this.user = user;
+        this.date = new Date();
+    }
+
+    public GameRun() {
+
+    }
 
     public int getId() {
         return id;
