@@ -18,7 +18,6 @@ public class GameRun {
     private String character;
     @Column
     private Date date;
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
