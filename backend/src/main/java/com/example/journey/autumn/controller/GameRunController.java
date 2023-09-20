@@ -5,6 +5,7 @@ import com.example.journey.autumn.model.GameRun;
 import com.example.journey.autumn.model.User;
 import com.example.journey.autumn.repository.GameRunRepository;
 import com.example.journey.autumn.repository.UserRepository;
+import com.example.journey.autumn.service.GameRunService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,12 +22,14 @@ public class GameRunController {
     GameRunRepository runRepository;
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    GameRunService gameRunService;
     @GetMapping(produces = "application/json")
     public List<GameRun> getAllRuns() {
         return runRepository.findAll();
     }
     @PostMapping(produces = "application/json")
-    public HttpStatus createUser(@RequestBody GameRunEntry gameRunEntry) {
+    public HttpStatus createRun(@RequestBody GameRunEntry gameRunEntry) {
         long userId = gameRunEntry.id();
         System.out.println(userId);
         Optional<User> user = userRepository.findById(userId);
@@ -50,5 +53,15 @@ public class GameRunController {
     public ResponseEntity<List<GameRun>> getRunByUserId(@PathVariable("id") Long id) {
         Optional<User> user = userRepository.findById(id);
         return user.isPresent()? new ResponseEntity<>(runRepository.findAllByUser(user.get()), HttpStatus.OK): new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping(value = "/average/{id}")
+    public ResponseEntity<Long> getAverageScoreAllRuns(@PathVariable("id") long id) {
+        Optional<User> user = userRepository.findById(id);
+        if(user.isEmpty()) {
+            new ResponseEntity<>(0, HttpStatus.NOT_FOUND);
+        }
+        long averageScore = gameRunService.getAverageScore(user.get());
+        return new ResponseEntity<>(averageScore, HttpStatus.OK);
     }
 }
