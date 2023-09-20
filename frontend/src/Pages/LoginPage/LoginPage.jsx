@@ -82,6 +82,9 @@ export default function LoginPage() {
                   REGISTER
                 </button>
               </div>
+              <div className="login-opt">
+                <Link className="option-btn" to={"/how-to-play"}>TUTORIAL</Link> 
+              </div>
             </>
           }
         </div>
