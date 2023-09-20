@@ -13,7 +13,7 @@ import java.util.Optional;
 @Repository
 public interface GameRunRepository extends JpaRepository<GameRun, Long> {
     List<GameRun> findAllByUser(User user);
-    @Query("SELECT\n" +
+    @Query(value = "SELECT\n" +
             "  u.username,\n" +
             "  max_score.highest_score,\n" +
             "  gr.character,\n" +
@@ -27,9 +27,9 @@ public interface GameRunRepository extends JpaRepository<GameRun, Long> {
             "  GROUP BY user_id\n" +
             ") max_score ON u.user_id = max_score.user_id\n" +
             "LEFT JOIN game_runs gr ON max_score.user_id = gr.user_id AND max_score.highest_score = gr.score\n" +
-            "ORDER BY max_score.highest_score DESC;\n")
+            "ORDER BY max_score.highest_score DESC;\n", nativeQuery = true)
     List<Object[]> findHighscoresByCharacter(@Param("character") String character);
-    @Query("SELECT\n" +
+    @Query(value = "SELECT\n" +
             "  u.username,\n" +
             "  max_score.highest_score,\n" +
             "  gr.character,\n" +
@@ -42,6 +42,6 @@ public interface GameRunRepository extends JpaRepository<GameRun, Long> {
             "  GROUP BY user_id\n" +
             ") max_score ON u.user_id = max_score.user_id\n" +
             "LEFT JOIN game_runs gr ON max_score.user_id = gr.user_id AND max_score.highest_score = gr.score\n" +
-            "ORDER BY max_score.highest_score DESC;\n")
+            "ORDER BY max_score.highest_score DESC;\n", nativeQuery = true)
     List<Object[]> findGeneralHighscores();
 }
