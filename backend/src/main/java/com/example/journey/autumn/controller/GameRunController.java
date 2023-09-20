@@ -1,5 +1,6 @@
 package com.example.journey.autumn.controller;
 
+import com.example.journey.autumn.data.GameRunEntry;
 import com.example.journey.autumn.model.GameRun;
 import com.example.journey.autumn.model.User;
 import com.example.journey.autumn.repository.GameRunRepository;
@@ -25,13 +26,14 @@ public class GameRunController {
         return runRepository.findAll();
     }
     @PostMapping(produces = "application/json")
-    public HttpStatus createUser(@RequestBody Map<String, String> requestBody) {
-        long userId = Long.parseLong(requestBody.get("userId"));
+    public HttpStatus createUser(@RequestBody GameRunEntry gameRunEntry) {
+        long userId = gameRunEntry.id();
+        System.out.println(userId);
         Optional<User> user = userRepository.findById(userId);
         if(user.isEmpty()) {
             return HttpStatus.NOT_FOUND;
         }
-        runRepository.save(new GameRun(Integer.parseInt(requestBody.get("score")), requestBody.get("character"), user.get()));
+        runRepository.save(new GameRun(gameRunEntry.score(), gameRunEntry.character(), user.get()));
         return HttpStatus.OK;
     }
     @DeleteMapping(value = "/{id}")

@@ -1,8 +1,12 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useContext } from "react";
 import Game from "./classes/Game";
+import UserContext from "../user/UserContext";
+import updateHighscore from "../api/updateHighscore";
+import createRun from "../api/createRun";
 
-const GameApp = ({playerCharacter}) => {
+const GameApp = ({playerCharacter, isLoggedIn}) => {
     const canvasRef = useRef(null);
+    const [currentUser, setCurrentUser] = useContext(UserContext);
     /* useEffect(() => {
       console.log("hook fired!");
       console.log(canvasRef.current);
@@ -32,10 +36,15 @@ const GameApp = ({playerCharacter}) => {
         }
         if(game.state === "finished") {
           game.playerGUI.displayGameOver();
-          console.log("score: " + game.player.score);
-          console.log("character: " + playerCharacter.name);
-          console.log("userId: " + localStorage.getItem("userId"));
           window.cancelAnimationFrame(animationFrameId);
+          console.log("score: " + game.player.score);
+          console.log("userscore: " + currentUser.highscore);
+          if(isLoggedIn) {
+            if(game.player.score > currentUser.highscore) {
+              updateHighscore(game.player.score);
+            }
+              createRun(game.player.score, playerCharacter.name);
+          }
         }
       }
       render()

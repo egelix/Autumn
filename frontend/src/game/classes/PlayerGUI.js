@@ -8,7 +8,7 @@ class PlayerGUI {
         this.startingTime = Date.now();
         this.timeElapsed = 0;
         this.startupMaxTime = 3;
-        this.timeLimit = 20 + this.startupMaxTime;
+        this.timeLimit = 5 + this.startupMaxTime;
         this.displayedTime = this.timeLimit;
         this.startupTimeDisplayed = 1;
     };

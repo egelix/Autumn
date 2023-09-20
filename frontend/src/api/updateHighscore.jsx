@@ -5,10 +5,11 @@ const updateHighscore = (highscore) => {
     {
         method: "PATCH",
         headers: {
+            "Content-Type": "application/json",
             "Authorization": localStorage.getItem("Authorization"),
           },
        body: JSON.stringify({ 
-        "highscore": highscore 
+        highscore: highscore 
     }),        
     })
     .then((response) => response.json())

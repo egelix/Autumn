@@ -13,7 +13,7 @@ public class GameRun {
     @Column(name = "run_id")
     private int id;
     @Column
-    private int score;
+    private long score;
     @Column
     private String character;
     @Column
@@ -22,7 +22,7 @@ public class GameRun {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    public GameRun(int score, String character, User user) {
+    public GameRun(long score, String character, User user) {
         this.score = score;
         this.character = character;
         this.user = user;
@@ -41,11 +41,11 @@ public class GameRun {
         this.id = id;
     }
 
-    public int getScore() {
+    public long getScore() {
         return score;
     }
 
-    public void setScore(int score) {
+    public void setScore(long score) {
         this.score = score;
     }
 
