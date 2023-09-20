@@ -26,8 +26,17 @@ const GameApp = ({playerCharacter}) => {
       
       //Our draw came here
       const render = () => {
-        draw(game);
-        animationFrameId = window.requestAnimationFrame(render);
+        if(game.state !== "finished") {
+          draw(game);
+          animationFrameId = window.requestAnimationFrame(render);
+        }
+        if(game.state === "finished") {
+          game.playerGUI.displayGameOver();
+          console.log("score: " + game.player.score);
+          console.log("character: " + playerCharacter.name);
+          console.log("userId: " + localStorage.getItem("userId"));
+          window.cancelAnimationFrame(animationFrameId);
+        }
       }
       render()
       

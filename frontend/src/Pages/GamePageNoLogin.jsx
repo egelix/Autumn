@@ -5,7 +5,7 @@ const GamePageNoLogin = () => {
     const [playerCharacter, setPlayerCharacter] = useState(null);
     return (
     <div className="page-root">
-        {playerCharacter === null?<CharacterSelect setPlayerCharacter={setPlayerCharacter} />:<GameApp playerCharacter={playerCharacter}/>}
+        {playerCharacter === null?<CharacterSelect setPlayerCharacter={setPlayerCharacter} />:<GameApp playerCharacter={playerCharacter} isLoggedIn={false}/>}
     </div>
         )
 }
