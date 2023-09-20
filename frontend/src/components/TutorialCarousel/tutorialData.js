@@ -1,7 +1,7 @@
 const TUTORIAL_DATA = [
     {
         title: "Basics",
-        imgSrc: "",
+        imgSrc: "/src/pixel/Welcome.png",
         text: "Struggle is a very cool game that only the best 1337 pro gamers can play.",
         index: 0,
     },
