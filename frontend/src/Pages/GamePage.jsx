@@ -9,7 +9,8 @@ const GamePage = () => {
         setPlayerCharacter(null);
     }
     return (<div className="page-root">
-        {playerCharacter === null?<CharacterSelect setPlayerCharacter={setPlayerCharacter} />:<GameApp playerCharacter={playerCharacter} isLoggedIn={true}/>} 
+        {playerCharacter === null?<CharacterSelect setPlayerCharacter={setPlayerCharacter} />:
+        gameOverDisplay === null?<GameApp playerCharacter={playerCharacter} isLoggedIn={true} setGameOverDisplay={setGameOverDisplay}/>: null} 
         {gameOverDisplay === null? null: <div>
             <p>{gameOverDisplay}</p>
             <button onClick={restartGame}>RESTART</button>
