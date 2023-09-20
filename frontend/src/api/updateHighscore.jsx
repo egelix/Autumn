@@ -1,18 +1,16 @@
 const BASE_URL = "http://localhost:8080";
-const createRun = (score, characterName) => {
+const updateHighscore = (highscore) => {
     const id = localStorage.getItem("userId");
-    return fetch(BASE_URL + "/game-runs",
+    return fetch(BASE_URL + `/users/highscore/${id}`,
     {
-        method: "POST",
+        method: "PATCH",
         headers: {
             "Authorization": localStorage.getItem("Authorization"),
           },
        body: JSON.stringify({ 
-        userId: id, 
-        score: score,
-        character: characterName, 
+        "highscore": highscore 
     }),        
     })
     .then((response) => response.json())
 }
-export default createRun;
+export default updateHighscore;
