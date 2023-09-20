@@ -1,7 +1,6 @@
 package com.example.journey.autumn.security;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -36,7 +35,17 @@ public class JWTTokenValidatorFilter extends OncePerRequestFilter {
                 SecurityContextHolder.getContext().setAuthentication(auth);
             } catch (Exception e) {
                 throw new BadCredentialsException("Invalid Token received!");
-            }
+            } /*catch (ExpiredJwtException ex) {
+            LOGGER.error("JWT expired", ex.getMessage());
+        } catch (IllegalArgumentException ex) {
+            LOGGER.error("Token is null, empty or only whitespace", ex.getMessage());
+        } catch (MalformedJwtException ex) {
+            LOGGER.error("JWT is invalid", ex);
+        } catch (UnsupportedJwtException ex) {
+            LOGGER.error("JWT is not supported", ex);
+        } catch (SignatureException ex) {
+            LOGGER.error("Signature validation failed");
+        }*/
         }
         filterChain.doFilter(request, response);
     }

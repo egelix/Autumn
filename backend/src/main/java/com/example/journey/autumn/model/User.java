@@ -17,7 +17,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
-    private int id;
+    private long id;
 
     public User(String username, String password, long highscore) {
         this.username = username;
@@ -42,7 +42,7 @@ public class User {
 
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
