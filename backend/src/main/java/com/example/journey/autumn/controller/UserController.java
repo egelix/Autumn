@@ -3,6 +3,8 @@ package com.example.journey.autumn.controller;
 import com.example.journey.autumn.model.User;
 import com.example.journey.autumn.repository.UserRepository;
 import com.example.journey.autumn.security.UserPrincipal;
+import com.example.journey.autumn.service.UserService;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +22,8 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
     @Autowired
+    UserService userService;
+    @Autowired
     PasswordEncoder passwordEncoder;
     @GetMapping(produces = "application/json")
     public List<User> getAllUsers() {
@@ -33,14 +37,21 @@ public class UserController {
         userRepository.save(new User(requestBody.get("username"), password, 0));
         return HttpStatus.OK;
     }
+
+    @PatchMapping(value = "/newhighscore/{id}")
+    public HttpStatus updateHighscoreById (@RequestBody Map<String, Long> requestBody, @PathVariable("id") long id) {
+        userService.updateHighscoreById(id, requestBody.get("highscore"));
+        return HttpStatus.OK;
+    }
+
     @DeleteMapping(value = "/{id}")
     public HttpStatus deleteUserById(@PathVariable("id") Long id) {
         userRepository.deleteById(id);
         return HttpStatus.OK;
     }
     @GetMapping(value = "/{id}", produces = "application/json")
-    public ResponseEntity<User> getUserById(@PathVariable("id") int id) {
-        Optional<User> requestedUser = userRepository.findById((long)id);
+    public ResponseEntity<User> getUserById(@PathVariable("id") long id) {
+        Optional<User> requestedUser = userRepository.findById(id);
 
         return requestedUser.isPresent() ? new ResponseEntity<>(requestedUser.get(), HttpStatus.OK) : new ResponseEntity<>(null, NOT_FOUND);
     }
