@@ -15,6 +15,7 @@ import UserProvider from './user/UserProvider';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import LevelPreviewPage from './Pages/LevelPreviewPage';
 import TutorialPage from './Pages/TutorialPage';
+import HighscorePage from './Pages/HighscorePage';
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
   {
     path: "/how-to-play",
     element: <TutorialPage />,
+  },
+  {
+    path: "/highscore",
+    element: <HighscorePage />,
   },
   {
     path: "/account",

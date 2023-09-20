@@ -64,4 +64,12 @@ public class GameRunController {
         long averageScore = gameRunService.getAverageScore(user.get());
         return new ResponseEntity<>(averageScore, HttpStatus.OK);
     }
+    @GetMapping(value = "/highscore", produces = "application/json")
+    public List<Object[]> getHighscores() {
+        return runRepository.findGeneralHighscores();
+    }
+    @GetMapping(value = "/highscore/{character}")
+    public List<Object[]> getHighscoresFromCharacter(@PathVariable("character") String character) {
+        return runRepository.findHighscoresByCharacter(character);
+    }
 }
