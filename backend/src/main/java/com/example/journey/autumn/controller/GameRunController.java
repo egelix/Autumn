@@ -26,8 +26,11 @@ public class GameRunController {
     }
     @PostMapping(produces = "application/json")
     public HttpStatus createUser(@RequestBody Map<String, String> requestBody) {
-        long userId = Long.parseLong(requestBody.get("user_id"));
+        long userId = Long.parseLong(requestBody.get("userId"));
         Optional<User> user = userRepository.findById(userId);
+        if(user.isEmpty()) {
+            return HttpStatus.NOT_FOUND;
+        }
         runRepository.save(new GameRun(Integer.parseInt(requestBody.get("score")), requestBody.get("character"), user.get()));
         return HttpStatus.OK;
     }

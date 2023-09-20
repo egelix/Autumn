@@ -1,5 +1,3 @@
-import { useContext } from "react";
-import UserContext from "./UserContext";
 const BASE_URL = "http://localhost:8080";
 
 const fetchUser = () => {
