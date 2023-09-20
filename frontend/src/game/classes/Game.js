@@ -64,10 +64,6 @@ class Game {
             this.playerGUI.displayStartTimer();
             return;
         }
-        if(this.state === "finished") {
-            this.playerGUI.displayGameOver();
-            return;
-        }
         this.draw();
         this.platforms.forEach((platform) => {
             platform.update();
