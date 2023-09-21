@@ -32,10 +32,7 @@ const router = createBrowserRouter([
     path: "/how-to-play",
     element: <TutorialPage />,
   },
-  {
-    path: "/highscore",
-    element: <HighscorePage />,
-  },
+  
   {
     path: "/account",
     element: <Layout />,
@@ -47,7 +44,11 @@ const router = createBrowserRouter([
       {
         path: "game",
         element: <ProtectedRoute component={GamePage} />
-      }
+      },
+      {
+        path: "highscore",
+        element: <ProtectedRoute component={HighscorePage} />,
+      },
     ]
   }
 ]);

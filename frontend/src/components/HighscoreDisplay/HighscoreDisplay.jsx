@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import fetchHighscores from "../../api/fetchHighscores";
 import fetchHighscoresFromCharacter from "../../api/fetchHighscoresFromCharacter";
 import characterData from "../CharacterSelect/characterData";
+import "./HighscoreDisplay.css";
 
 const HighscoreDisplay = () => {
     const[currentCharacter, setCurrentCharacter] = useState(null);
@@ -31,11 +32,18 @@ const HighscoreDisplay = () => {
         setLoading(true);
         getHighscores();
     }, [currentCharacter])
+    const formatDate = (date) => {
+        const segments = date.split("T")[0].split("-").reverse();
+        return segments.join("-");
+
+    }
     return(<div className="hs-display-container">
+        <div className="hs-button-container">
             <button onClick={() => setCurrentCharacter(null)}>ALL</button>
             {characterData.map((character) => {
                 return <button key={character.key} onClick={() => setCurrentCharacter(character.name)}>{character.name}</button>
             })}
+            </div>
             {loading?"loading..."
             :<table className="hs-table">
                 <thead>
@@ -53,7 +61,7 @@ const HighscoreDisplay = () => {
                         <td>{run[0]}</td>
                         <td>{run[1]}</td>
                         <td>{run[2]}</td>
-                        <td>{run[3]}</td>
+                        <td>{formatDate(run[3])}</td>
                     </tr>)
                 })}
                 </tbody>
