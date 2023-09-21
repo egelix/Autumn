@@ -10,9 +10,10 @@ class Player {
             x: 0,
             y: 0,
         };
-        this.width= 20;
-        this.height = 20;
+        this.width= GAME_SETTINGS.BLOCK_SIZE * 1.5;
+        this.height = GAME_SETTINGS.BLOCK_SIZE * 1.5;
         this.speed = 5;
+        this.maxFallSpeed = GAME_SETTINGS.MAX_FALL_SPEED;
         this.jumpSpeed = {
             acceleration: 1,
             max: 20,
@@ -58,7 +59,9 @@ class Player {
             this.jump();
             return;
         }
-        this.velocity.y += this.gravity;
+        if(this.velocity.y <= this.maxFallSpeed) {
+            this.velocity.y += this.gravity;
+        }
     }
     applyHorizontalMovement() {
         if(
