@@ -12,7 +12,7 @@ import GamePageNoLogin from './Pages/GamePageNoLogin';
 import UserProvider from './user/UserProvider';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import LevelPreviewPage from './Pages/LevelPreviewPage';
-import TutorialPage from './Pages/TutorialPage';
+import TutorialPage from './Pages/Tutorial/TutorialPage';
 import HighscorePage from './Pages/HighscorePage';
 
 const router = createBrowserRouter([

@@ -18,17 +18,27 @@ const TutorialCarousel = () => {
         const newIndex = index + 1;
         setIndex(newIndex >= length ? 0 : newIndex);
       };
-    return(<div className="tutorial-carousel">
-        <div className="tutorial-buttons-header">
-            <button onClick={handlePrevious}>PREVIOUS</button>
-            {TUTORIAL_DATA.map((infoElement) => {
-                return <button key={infoElement.index} onClick={() => {
-                    setIndex(infoElement.index);
-                }}>{infoElement.title}</button>
-            })}
-            <button onClick={handleNext}>NEXT</button>
-        </div>
-        <TutorialElement title={currentInfoElement.title} text={currentInfoElement.text} imgSrc={currentInfoElement.imgSrc} />
-    </div>)
+    return (
+            <div className="tutorial-field">                   
+                    <TutorialElement title={currentInfoElement.title} text={currentInfoElement.text} imgSrc={currentInfoElement.imgSrc} />
+                    <div className="tutorial-nav-box">
+                        <div className="info-arrow">
+                            <img src="src/pixel/arrow_white_left.png" alt="next button" onClick={handlePrevious} 
+                            onMouseOver={e => (e.currentTarget.src = "src/pixel/arrow_full_left.png")}
+                            onMouseOut={e => (e.currentTarget.src = "src/pixel/arrow_white_left.png")}
+                            />
+                        </div>
+                        <p className="info-title">
+                            {currentInfoElement.title}
+                        </p>
+                        <div className="info-arrow">
+                            <img src="src/pixel/arrow_white_right.png" alt="next button" onClick={handlePrevious} 
+                            onMouseOver={e => (e.currentTarget.src = "src/pixel/arrow_full_right.png")}
+                            onMouseOut={e => (e.currentTarget.src = "src/pixel/arrow_white_right.png")}
+                            /> 
+                        </div>
+                    </div>
+            </div>
+        )
 }
 export default TutorialCarousel;
