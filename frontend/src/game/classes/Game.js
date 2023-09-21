@@ -5,7 +5,6 @@ import InputHandler from "./InputHandler";
 import ScoreBlock from "./ScoreBlock";
 import PlayerGUI from "./PlayerGUI";
 import LEVELS from "../constants/LevelData";
-import LevelChangeBlock from "./LevelChangeBlock";
 
 class Game {
     constructor(canvas, playerCharacter) {
@@ -105,6 +104,9 @@ class Game {
                 c: this.c,
             })
         })
+        this.scoreBlocks.forEach((scoreBlock) => {
+            scoreBlock.initializeImage();
+        })
         if(this.currentLevel.currentCoins > 1) {
             this.currentLevel.currentCoins--;
         }
@@ -160,6 +162,9 @@ class Game {
                 height: GAME_SETTINGS.BLOCK_SIZE,
                 c: this.c,
             })
+        })
+        this.scoreBlocks.forEach((scoreBlock) => {
+            scoreBlock.initializeImage();
         })
         this.spawnPowerUp();
     }

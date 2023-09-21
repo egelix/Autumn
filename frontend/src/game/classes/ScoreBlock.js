@@ -1,4 +1,3 @@
-import GAME_SETTINGS from "../constants/GameSettings";
 import CollisionBlock from "./CollisionBlock";
 
 class ScoreBlock extends CollisionBlock {
@@ -6,11 +5,15 @@ class ScoreBlock extends CollisionBlock {
         super({ position, height, width, c });
     }
     draw() {
-        this.c.fillStyle = 'rgb(0, 255, 0)';
-        this.c.fillRect(this.position.x, this.position.y, this.width, this.height);
+        this.c.drawImage(this.currentImage, this.position.x, this.position.y, this.width, this.height);
     }
     update() {
         this.draw();
+    }
+    initializeImage() {
+        const img = new Image()
+        img.src = "/src/game/assets/sprites/items/coin/coin.png";
+        this.currentImage = img;
     }
 }
 export default ScoreBlock;
