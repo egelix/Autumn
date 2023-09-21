@@ -32,15 +32,16 @@ class Game {
     initialize() {
         this.c.canvas.width = GAME_SETTINGS.WIDTH;
         this.c.canvas.height = GAME_SETTINGS.HEIGHT;
-        this.loadPlatforms();
-        this.spawnPowerUp();
+       
         this.player = new Player({
-            position: {x: 10, y: 10}, 
+            position: GAME_SETTINGS.STARTING_POSITION, 
             context: this.c,
             game: this,
             playerCharacter: this.playerCharacter,
         });
         this.player.loadImg();
+         this.loadPlatforms();
+        this.spawnPowerUp();
         this.loadScoreBlocks();
         this.playerGUI = new PlayerGUI ({
             player: this.player,
@@ -135,7 +136,7 @@ class Game {
     spawnPowerUp() {
         const randomIndex = Math.floor(Math.random() * this.currentLevel.powerUpPositions.length);
         const newPosition = this.currentLevel.powerUpPositions[randomIndex];
-        if(this.powerUp.position.x === newPosition.x && this.powerUp.position.y === newPosition.y) {
+        if(this.powerUp.position.x === newPosition.x && this.powerUp.y === newPosition.y) {
             this.spawnPowerUp();
         }
         this.powerUp = new CollisionBlock({

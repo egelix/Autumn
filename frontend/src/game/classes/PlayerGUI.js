@@ -11,7 +11,7 @@ class PlayerGUI {
         this.timeLimit = 20 + this.startupMaxTime;
         this.displayedTime = this.timeLimit;
         this.startupTimeDisplayed = 1;
-    };
+    }
     draw() {
         this.c.font = "30px Arial";
         this.c.fillStyle = 'rgb(255, 0, 0)';

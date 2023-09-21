@@ -1,19 +1,20 @@
 import GAME_SETTINGS from "./GameSettings";
 const UNIT = GAME_SETTINGS.BLOCK_SIZE;
+const GROUND_PLATFORM =  {
+    position: {
+        x: 0,
+        y: GAME_SETTINGS.HEIGHT - UNIT,
+},
+    height: UNIT,
+    width: GAME_SETTINGS.WIDTH,
+}
 
 const LEVELS = [
     {
         name: "level1",
         maxCoins: 4,
         platforms: [
-            {
-                position: {
-                    x: 0,
-                    y: GAME_SETTINGS.HEIGHT - UNIT,
-            },
-                height: UNIT,
-                width: GAME_SETTINGS.WIDTH,
-            },
+            GROUND_PLATFORM,
             {
                 position: {
                     x: UNIT * 3,
@@ -46,19 +47,11 @@ const LEVELS = [
                 y: GAME_SETTINGS.HEIGHT - (UNIT * 8),
             },
             {
-                x: UNIT * 5.5,
-                y: GAME_SETTINGS.HEIGHT - (UNIT * 8),
-            },
-            {
                 x: UNIT * 8,
                 y: GAME_SETTINGS.HEIGHT - (UNIT * 8),
             },
             {
                 x: UNIT * 23,
-                y: GAME_SETTINGS.HEIGHT - (UNIT * 8),
-            },
-            {
-                x: UNIT * 25.5,
                 y: GAME_SETTINGS.HEIGHT - (UNIT * 8),
             },
             {
@@ -71,30 +64,10 @@ const LEVELS = [
             },
             {
                 x: UNIT * 15.5,
-                y: GAME_SETTINGS.HEIGHT - (UNIT * 12),
-            },
-            {
-                x: UNIT * 15.5,
                 y: GAME_SETTINGS.HEIGHT - (UNIT * 14),
             },
             {
-                x: UNIT * 13,
-                y: GAME_SETTINGS.HEIGHT - (UNIT * 7),
-            },
-            {
-                x: UNIT * 18,
-                y: GAME_SETTINGS.HEIGHT - (UNIT * 7),
-            },
-            {
                 x: UNIT * 15.5,
-                y: GAME_SETTINGS.HEIGHT - (UNIT * 4),
-            },
-            {
-                x: UNIT * 13,
-                y: GAME_SETTINGS.HEIGHT - (UNIT * 4),
-            },
-            {
-                x: UNIT * 18,
                 y: GAME_SETTINGS.HEIGHT - (UNIT * 4),
             },
             {
@@ -120,10 +93,6 @@ const LEVELS = [
             y: GAME_SETTINGS.HEIGHT - (UNIT * 14),
         },
         {
-            x: UNIT * 30,
-            y: GAME_SETTINGS.HEIGHT - (UNIT * 9),
-        },
-        {
             x: UNIT * 5.5,
             y: GAME_SETTINGS.HEIGHT - (UNIT * 4.5),
         },
@@ -133,101 +102,87 @@ const LEVELS = [
         },
     ]
     },
-    /* {
+    {
         name: "level2",
         maxCoins: 3,
         platforms: [
+            GROUND_PLATFORM,
             {
                 position: {
-                    x: 0,
-                    y: GAME_SETTINGS.HEIGHT - 20,
+                    x: UNIT * 8,
+                    y: GAME_SETTINGS.HEIGHT - (UNIT * 6),
             },
-                height: 20,
-                width: GAME_SETTINGS.WIDTH,
-            },
-            {
-                position: {
-                    x: 20,
-                    y: GAME_SETTINGS.HEIGHT - 200,
-            },
-                height: 20,
-                width: 300,
+                height: UNIT/2,
+                width: UNIT * 15,
             },
             
 
         ],
     coinPositions: [
             {
-                x: 10,
-                y: GAME_SETTINGS.HEIGHT - 100,
+                x: UNIT * 9,
+                y: GAME_SETTINGS.HEIGHT - (UNIT * 11),
             },
             {
-                x: 230,
-                y: GAME_SETTINGS.HEIGHT - 100,
+                x: UNIT * 12,
+                y: GAME_SETTINGS.HEIGHT - (UNIT * 9),
             },
             {
-                x: 450,
-                y: GAME_SETTINGS.HEIGHT - 100,
+                x: UNIT * 22,
+                y: GAME_SETTINGS.HEIGHT - (UNIT * 11),
             },
             {
-                x: 570,
-                y: GAME_SETTINGS.HEIGHT - 100,
+                x: UNIT * 19,
+                y: GAME_SETTINGS.HEIGHT - (UNIT * 9),
             },
             {
-                x: 690,
-                y: GAME_SETTINGS.HEIGHT - 100,
+                x: UNIT * 6,
+                y: GAME_SETTINGS.HEIGHT - (UNIT * 4),
             },
             {
-                x: 50,
-                y: GAME_SETTINGS.HEIGHT - 300,
+                x: UNIT * 24,
+                y: GAME_SETTINGS.HEIGHT - (UNIT * 4),
             },
             {
-                x: 250,
-                y: GAME_SETTINGS.HEIGHT - 300,
+                x: UNIT * 28,
+                y: GAME_SETTINGS.HEIGHT - (UNIT * 5),
             },
             {
-                x: 350,
-                y: GAME_SETTINGS.HEIGHT - 300,
+                x: UNIT * 2,
+                y: GAME_SETTINGS.HEIGHT - (UNIT * 5),
             },
         ],
     powerUpPositions: [
         {
-            x: 10,
-            y: GAME_SETTINGS.HEIGHT - 200,
+            x: UNIT * 15.5,
+            y: GAME_SETTINGS.HEIGHT - (UNIT * 11),
         },
         {
-            x: 450,
-            y: GAME_SETTINGS.HEIGHT - 200,
+            x: UNIT * 2,
+            y: GAME_SETTINGS.HEIGHT - (UNIT * 10),
         },
         {
-            x: 570,
-            y: GAME_SETTINGS.HEIGHT - 200,
+            x: UNIT * 29,
+            y: GAME_SETTINGS.HEIGHT - (UNIT * 10),
         },
     ]
     },
     {
         name: "level3",
-        maxCoins: 1,
+        maxCoins: 4,
         platforms: [
-            {
-                position: {
-                    x: 0,
-                    y: GAME_SETTINGS.HEIGHT - UNIT,
-            },
-                height: UNIT,
-                width: GAME_SETTINGS.WIDTH,
-            },
+            GROUND_PLATFORM,
             {
                 position: {
                     x: UNIT * 4,
-                    y: GAME_SETTINGS.HEIGHT - (UNIT * 16),
+                    y: GAME_SETTINGS.HEIGHT - (UNIT * 4),
             },
                 height: UNIT/2,
                 width: UNIT * 3,
             },
             {
                 position: {
-                    x: UNIT * 7,
+                    x: 0,
                     y: GAME_SETTINGS.HEIGHT - (UNIT * 8),
             },
                 height: UNIT/2,
@@ -235,7 +190,47 @@ const LEVELS = [
             },
             {
                 position: {
-                    x: UNIT * 10,
+                    x: UNIT * 8,
+                    y: GAME_SETTINGS.HEIGHT - (UNIT * 8),
+            },
+                height: UNIT/2,
+                width: UNIT * 3,
+            },
+            {
+                position: {
+                    x: UNIT * 4,
+                    y: GAME_SETTINGS.HEIGHT - (UNIT * 12),
+            },
+                height: UNIT/2,
+                width: UNIT * 3,
+            },
+            {
+                position: {
+                    x: UNIT * 25,
+                    y: GAME_SETTINGS.HEIGHT - (UNIT * 4),
+            },
+                height: UNIT/2,
+                width: UNIT * 3,
+            },
+            {
+                position: {
+                    x: UNIT * 29,
+                    y: GAME_SETTINGS.HEIGHT - (UNIT * 8),
+            },
+                height: UNIT/2,
+                width: UNIT * 3,
+            },
+            {
+                position: {
+                    x: UNIT * 21,
+                    y: GAME_SETTINGS.HEIGHT - (UNIT * 8),
+            },
+                height: UNIT/2,
+                width: UNIT * 3,
+            },
+            {
+                position: {
+                    x: UNIT * 25,
                     y: GAME_SETTINGS.HEIGHT - (UNIT * 12),
             },
                 height: UNIT/2,
@@ -244,40 +239,72 @@ const LEVELS = [
             {
                 position: {
                     x: UNIT * 13,
-                    y: GAME_SETTINGS.HEIGHT - (UNIT * 4),
-            },
-                height: UNIT/2,
-                width: UNIT * 3,
-            },
-            {
-                position: {
-                    x: UNIT * 16,
-                    y: GAME_SETTINGS.HEIGHT - (UNIT * 6),
-            },
-                height: UNIT/2,
-                width: UNIT * 3,
-            },
-            {
-                position: {
-                    x: UNIT * 16,
                     y: GAME_SETTINGS.HEIGHT - (UNIT * 11),
-            },
+                },
                 height: UNIT/2,
-                width: UNIT * 3,
+                width: UNIT * 6,
             },
         ],
     coinPositions: [
             {
-                x: 10,
-                y: GAME_SETTINGS.HEIGHT - UNIT * 16,
+                x: UNIT,
+                y: GAME_SETTINGS.HEIGHT - UNIT * 10,
+            },
+            {
+                x: UNIT * 9,
+                y: GAME_SETTINGS.HEIGHT - UNIT * 10,
+            },
+            {
+                x: UNIT * 22,
+                y: GAME_SETTINGS.HEIGHT - UNIT * 10,
+            },
+            {
+                x: UNIT * 30,
+                y: GAME_SETTINGS.HEIGHT - UNIT * 10,
+            },
+            {
+                x: UNIT * 12,
+                y: GAME_SETTINGS.HEIGHT - UNIT * 5,
+            },
+            {
+                x: UNIT * 15.5,
+                y: GAME_SETTINGS.HEIGHT - UNIT * 5,
+            },
+            {
+                x: UNIT * 19,
+                y: GAME_SETTINGS.HEIGHT - UNIT * 5,
+            },
+            {
+                x: UNIT * 15.5,
+                y: GAME_SETTINGS.HEIGHT - UNIT * 14,
+            },
+            {
+                x: UNIT * 5,
+                y: GAME_SETTINGS.HEIGHT - UNIT * 14,
+            },
+            {
+                x: UNIT * 26,
+                y: GAME_SETTINGS.HEIGHT - UNIT * 14,
             },
         ],
     powerUpPositions: [
         {
-            x: -100,
-            y: GAME_SETTINGS.HEIGHT - 200,
+            x: UNIT,
+            y: GAME_SETTINGS.HEIGHT - UNIT * 16,
+        },
+        {
+            x: UNIT * 12,
+            y: GAME_SETTINGS.HEIGHT - UNIT * 16,
+        },
+        {
+            x: UNIT * 20,
+            y: GAME_SETTINGS.HEIGHT - UNIT * 16,
+        },
+        {
+            x: UNIT * 30,
+            y: GAME_SETTINGS.HEIGHT - UNIT * 16,
         },
     ]
-    }, */
+    },
 ]
 export default LEVELS;
