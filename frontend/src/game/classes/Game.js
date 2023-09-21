@@ -40,6 +40,7 @@ class Game {
             game: this,
             playerCharacter: this.playerCharacter,
         });
+        this.player.loadImg();
         this.loadScoreBlocks();
         this.playerGUI = new PlayerGUI ({
             player: this.player,

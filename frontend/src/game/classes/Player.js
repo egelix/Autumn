@@ -35,10 +35,14 @@ class Player {
             current: 0,
             max: 10,
         }
+        this.spriteSrc = playerCharacter.spriteSrc;
+        this.currentImg = new Image();
+    }
+    loadImg() {
+        this.currentImg.src = this.spriteSrc;
     }
     draw() {
-        this.context.fillStyle = 'red';
-        this.context.fillRect(this.position.x, this.position.y, this.width, this.height);
+        this.context.drawImage(this.currentImg, this.position.x, this.position.y, this.width, this.height);
     }
     update() {
         this.draw();
