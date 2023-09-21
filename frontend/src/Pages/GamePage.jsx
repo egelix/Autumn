@@ -1,20 +1,18 @@
 import { useState } from "react";
 import GameApp from "../game/GameApp";
 import CharacterSelect from "../components/CharacterSelect/CharacterSelect";
+import GameOverDisplay from "../components/GameOverDisplay/GameOverDisplay";
 const GamePage = () => {
     const [playerCharacter, setPlayerCharacter] = useState(null);
-    const [gameOverDisplay, setGameOverDisplay] = useState(null);
+    const [gameOverText, setGameOverText] = useState(null);
     const restartGame = () => {
-        setGameOverDisplay(null);
+        setGameOverText(null);
         setPlayerCharacter(null);
     }
     return (<div className="page-root">
         {playerCharacter === null?<CharacterSelect setPlayerCharacter={setPlayerCharacter} />:
-        gameOverDisplay === null?<GameApp playerCharacter={playerCharacter} isLoggedIn={true} setGameOverDisplay={setGameOverDisplay}/>: null} 
-        {gameOverDisplay === null? null: <div>
-            <p>{gameOverDisplay}</p>
-            <button onClick={restartGame}>RESTART</button>
-            </div>}       
+        gameOverText === null?<GameApp playerCharacter={playerCharacter} isLoggedIn={true} setGameOverText={setGameOverText}/>: null} 
+        {gameOverText === null? null: <GameOverDisplay gameOverText={gameOverText} restartGame={restartGame} />}       
     </div>)
 }
 export default GamePage;
