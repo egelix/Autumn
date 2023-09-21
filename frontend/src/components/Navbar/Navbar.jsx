@@ -18,9 +18,7 @@ export default function Navbar() {
 					</div>
 						{currentUser!==null?<p className="navbar-text">Hello {currentUser.username}</p>:<p>text</p>}
 					<div className="navbar-div">
-						<Link className="link-button" to="/account/reverse">Reverse</Link>
 						<Link className="link-button" to="/account/game">Game</Link>
-						<Link className="link-button" to="/account/user">Users</Link>
 						<button className="link-button" onClick={logout}>Logout</button>
 					</div>
 				</nav>

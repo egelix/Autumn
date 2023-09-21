@@ -4,9 +4,7 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom";
 
 import './index.css'
 
-import StringReverser from './Pages/StringReverser';
 import HomePage from './Pages/HomePage';
-import UserPage from './Pages/UserPage';
 import GamePage from './Pages/GamePage';
 import Layout from './components/Layout/Layout';
 import LoginPage from './Pages/LoginPage/LoginPage';
@@ -45,14 +43,6 @@ const router = createBrowserRouter([
       {
         path: "home",
         element: <ProtectedRoute component={HomePage} />
-      },
-      {
-        path: "reverse",
-        element: <ProtectedRoute component={StringReverser} />
-      },
-      {
-        path: "user",
-        element: <ProtectedRoute component={UserPage} />
       },
       {
         path: "game",
