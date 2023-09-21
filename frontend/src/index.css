@@ -111,10 +111,10 @@ canvas {
   gap: 1em;
 }
 
-.tutorial-carousel {
+/*.tutorial-carousel {
   place-items: center;
   text-align: center;
-}
+}*/
 
 /*@media (prefers-color-scheme: light) {
   :root {

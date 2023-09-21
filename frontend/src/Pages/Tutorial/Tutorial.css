@@ -1,0 +1,49 @@
+.tutorial-container {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+}
+
+.tutorial-hl {
+    height: 20%;
+    margin: 0;
+}
+
+.tutorial-field {
+    width: 70%;
+    height: 80%;
+    margin: 0;
+    background-color: white;
+    border: 7px solid black;
+    box-shadow: 10px 10px  black;
+}
+
+.tutorial-nav-box {
+    height: 8%;
+    margin: 2%;
+    margin: 0%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    place-content: center center;
+    columns: 3;
+    justify-items: center;
+}
+
+.info-title {
+    padding: 30px;
+    text-align: center;
+}
+
+.info-arrow {
+   display: grid;
+   place-content: center end;
+}
+
+.tutorial-element-container {
+    height: 84%;
+    margin: 2%;
+    margin: 0%;
+    display: grid;
+    place-items: center;
+}
