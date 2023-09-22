@@ -10,9 +10,10 @@ class Player {
             x: 0,
             y: 0,
         };
-        this.width= 20;
-        this.height = 20;
-        this.speed = 5;
+        this.width= GAME_SETTINGS.BLOCK_SIZE * 1.5;
+        this.height = GAME_SETTINGS.BLOCK_SIZE * 1.5;
+        this.speed = 7;
+        this.maxFallSpeed = GAME_SETTINGS.MAX_FALL_SPEED;
         this.jumpSpeed = {
             acceleration: 1,
             max: 20,
@@ -35,10 +36,14 @@ class Player {
             current: 0,
             max: 10,
         }
+        this.spriteSrc = playerCharacter.spriteSrc;
+        this.currentImg = new Image();
+    }
+    loadImg() {
+        this.currentImg.src = this.spriteSrc;
     }
     draw() {
-        this.context.fillStyle = 'red';
-        this.context.fillRect(this.position.x, this.position.y, this.width, this.height);
+        this.context.drawImage(this.currentImg, this.position.x, this.position.y, this.width, this.height);
     }
     update() {
         this.draw();
@@ -54,7 +59,9 @@ class Player {
             this.jump();
             return;
         }
-        this.velocity.y += this.gravity;
+        if(this.velocity.y <= this.maxFallSpeed) {
+            this.velocity.y += this.gravity;
+        }
     }
     applyHorizontalMovement() {
         if(

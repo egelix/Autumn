@@ -4,7 +4,7 @@ import UserContext from "../user/UserContext";
 import updateHighscore from "../api/updateHighscore";
 import createRun from "../api/createRun";
 
-const GameApp = ({playerCharacter, isLoggedIn, setGameOverDisplay}) => {
+const GameApp = ({playerCharacter, isLoggedIn, setGameOverText}) => {
     const canvasRef = useRef(null);
     const [currentUser, setCurrentUser] = useContext(UserContext);
     /* useEffect(() => {
@@ -43,7 +43,7 @@ const GameApp = ({playerCharacter, isLoggedIn, setGameOverDisplay}) => {
             }
               createRun(game.player.score, playerCharacter.name);
             }
-            setGameOverDisplay("nice oida");
+            setGameOverText("You scored " + game.player.score + " Points");
           }
       }
       render()

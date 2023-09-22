@@ -5,7 +5,7 @@ import LevelPreview from "../components/LevelPreview/LevelPreview";
 const LevelPreviewPage = () => {
     const [levels, setLevels] = useState(LEVELS);
     return(
-        <>
+        <div className="page-root">
         <h1>LEVELS</h1>
         {levels === null? <p>Loading...</p>
         :<div className="level-preview-container">
@@ -13,7 +13,7 @@ const LevelPreviewPage = () => {
             return <LevelPreview level={level} key={level.name}/>
         })}
         </div>}
-        </>
+        </div>
     )
 }
 export default LevelPreviewPage;

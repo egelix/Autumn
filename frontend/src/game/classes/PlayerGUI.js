@@ -8,16 +8,16 @@ class PlayerGUI {
         this.startingTime = Date.now();
         this.timeElapsed = 0;
         this.startupMaxTime = 3;
-        this.timeLimit = 5 + this.startupMaxTime;
+        this.timeLimit = 20 + this.startupMaxTime;
         this.displayedTime = this.timeLimit;
         this.startupTimeDisplayed = 1;
-    };
+    }
     draw() {
         this.c.font = "30px Arial";
+        this.c.fillStyle = 'rgb(255, 0, 0)';
         this.c.fillText("SCORE: " + this.player.score, 800, 30);
         this.c.fillText("TIME: " + this.displayedTime, 40, 30);
-        this.c.fillText("NAME: " + this.player.name, 40, 500);
-    };
+    }
     update() {
         this.draw();
         this.timeElapsed = this.startingTime - Date.now();
