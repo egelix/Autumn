@@ -4,10 +4,12 @@ import "./Tutorial.css";
 const TutorialPage = () => {
     return(<div className="page-root">
         <div className="tutorial-container">
-            <div className="tutorial-hl">
+            <div className="tutorial-head">
                 <h1>HOW TO STRUGGLE</h1>
             </div>
-        <TutorialCarousel />
+            <div className="tutorial-body">
+                <TutorialCarousel />
+            </div>
         </div>
     </div>
     )

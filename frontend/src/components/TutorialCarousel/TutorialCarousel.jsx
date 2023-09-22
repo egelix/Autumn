@@ -28,9 +28,9 @@ const TutorialCarousel = () => {
                             onMouseOut={e => (e.currentTarget.src = "src/pixel/arrow_white_left.png")}
                             />
                         </div>
-                        <p className="info-title">
-                            {currentInfoElement.title}
-                        </p>
+                        <div className="info-title">
+                            <h2>{currentInfoElement.title}</h2>
+                        </div>
                         <div className="info-arrow">
                             <img src="src/pixel/arrow_white_right.png" alt="next button" onClick={handlePrevious} 
                             onMouseOver={e => (e.currentTarget.src = "src/pixel/arrow_full_right.png")}

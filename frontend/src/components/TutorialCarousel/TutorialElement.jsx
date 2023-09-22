@@ -1,8 +1,8 @@
 const TutorialElement = ({title, text, imgSrc}) => {
     return(
         <div className="tutorial-element-container">
-            <img src={imgSrc}></img>
-            <p>{text}</p>
+            <p className="tutorial-text">{text}</p>
+            <img className="tutorial-img" src={imgSrc}></img>
         </div>
     )
 }
