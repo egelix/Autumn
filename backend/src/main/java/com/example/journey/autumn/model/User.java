@@ -31,6 +31,7 @@ public class User {
     private String username;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
+    @Column
     private long highscore;
     @JsonIgnore
     @ElementCollection(fetch = FetchType.EAGER)
