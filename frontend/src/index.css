@@ -111,6 +111,10 @@ canvas {
   gap: 1em;
 }
 
+.error-text {
+  color: red;
+}
+
 /*.tutorial-carousel {
   place-items: center;
   text-align: center;

@@ -3,8 +3,7 @@ import { useNavigate } from "react-router-dom";
 import fetchUser from '../../user/fetchUser';
 import UserContext from '../../user/UserContext';
 import { Buffer } from 'buffer';
-
-const BASE_URL = "http://localhost:8080";
+import BASE_URL from '../../constants';
 
 export default function LoginField({newUser, setLoginActive}) {
   const navigate = useNavigate();
