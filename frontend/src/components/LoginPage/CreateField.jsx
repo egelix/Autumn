@@ -31,16 +31,21 @@ export default function CreateField({handleNewUser, setCreateActive}) {
         if(checkCredentials()) {
           return;
         }
-        fetch(BASE_URL + "/users", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ username: name, password: password }),
-          })
-            .then((response) => response.json())
-            .then((data) => console.log(data))
-            .then(() => handleNewUser(name));
+        try {
+          fetch(BASE_URL + "/users", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ username: name, password: password }),
+            })
+              .then((response) => response.json())
+              .then((data) => console.log(data))
+              .then(() => handleNewUser(name));
+        }
+        catch(error) {
+          setError(error.message);
+        }
     }
 
   return (
