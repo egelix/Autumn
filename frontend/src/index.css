@@ -19,6 +19,7 @@
   width: 100vw;
   width: 100vh;
 }
+
 .page-root {
   width: 100vw;
   height: 100vh;
@@ -132,6 +133,9 @@ canvas {
   canvas {
     width: 100%;
     margin-top: 5%;
+  }
+  :root {
+    width: fit-content;
   }
 }
 
