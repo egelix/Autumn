@@ -134,11 +134,17 @@ class Game {
         this.spawnPowerUp();
     }
     spawnPowerUp() {
-        const randomIndex = Math.floor(Math.random() * this.currentLevel.powerUpPositions.length);
-        const newPosition = this.currentLevel.powerUpPositions[randomIndex];
-        if(this.powerUp.position.x === newPosition.x && this.powerUp.y === newPosition.y) {
-            this.spawnPowerUp();
-        }
+        const randomPositions = [...this.currentLevel.powerUpPositions]
+            .filter((position) => {
+                if(this.powerUp.position.x === position.x) {
+                    return this.powerUp.position.y !== position.y;
+                }
+                else {
+                    return true;
+                }
+            })
+            .sort(() => 0.5 - Math.random());
+        const newPosition = randomPositions[0];
         this.powerUp = new CollisionBlock({
             position: {
                 x: newPosition.x,
@@ -168,7 +174,6 @@ class Game {
         this.scoreBlocks.forEach((scoreBlock) => {
             scoreBlock.initializeImage();
         })
-        this.spawnPowerUp();
     }
 }
 export default Game;
