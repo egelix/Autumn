@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
-
-const BASE_URL = "http://localhost:8080";
+import BASE_URL from '../../constants';
 
 export default function CreateField({handleNewUser, setCreateActive}) {
     const [name, setName] = useState("");
