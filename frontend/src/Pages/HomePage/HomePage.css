@@ -1,0 +1,18 @@
+.home-page-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 5%;
+}
+
+.achievements-container {
+    width: 90%;
+    background-color: white;
+    border: 7px solid black;
+    box-shadow: 10px 10px black;
+    padding: 2%;
+}
+
+.achievement-element {
+    display: grid;
+    grid-template-columns: 1fr;
+}
