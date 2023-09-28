@@ -3,6 +3,7 @@ import Game from "./classes/Game";
 import UserContext from "../user/UserContext";
 import updateHighscore from "../api/updateHighscore";
 import createRun from "../api/createRun";
+import MobileButtons from "./MobileButtons";
 
 const GameApp = ({playerCharacter, isLoggedIn, setGameOverText}) => {
     const canvasRef = useRef(null);
@@ -53,7 +54,10 @@ const GameApp = ({playerCharacter, isLoggedIn, setGameOverText}) => {
       }
     }, [draw])
     return (
+      <>
         <canvas ref={canvasRef} tabIndex={"0"} />
+        <MobileButtons />
+      </>
     )
 }
 export default GameApp;
