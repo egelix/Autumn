@@ -10,3 +10,14 @@
     background-color: aliceblue;
     font-size: 1.5em;
 }
+@media only screen and (max-width: 480px) {
+    .game-over-container {
+        width: 80%;
+        margin: auto;
+        padding: 0;
+    }
+    .game-over-wrapper {
+        box-sizing: border-box;
+        padding-top: 40%;
+    }
+  }

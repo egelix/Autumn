@@ -54,10 +54,10 @@ const GameApp = ({playerCharacter, isLoggedIn, setGameOverText}) => {
       }
     }, [draw])
     return (
-      <>
+      <div className="game-container">
         <canvas ref={canvasRef} tabIndex={"0"} />
         <MobileButtons />
-      </>
+      </div>
     )
 }
 export default GameApp;
