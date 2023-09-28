@@ -1,6 +1,6 @@
 import CollisionBlock from "./CollisionBlock";
 
-class CoinSpawnBlock extends CollisionBlock {
+class SizeChangeBlock extends CollisionBlock {
     constructor({ position, height, width, c }) {
         super({ position, height, width, c });
     }
@@ -8,15 +8,16 @@ class CoinSpawnBlock extends CollisionBlock {
         this.c.drawImage(this.currentImage, this.position.x, this.position.y, this.width, this.height);
       }
     activate(game) {
-        game.spawnAllCoins();
-        game.currentLevel.currentCoins = game.currentLevel.maxCoins;
-        game.playerGUI.timeLimit -= 5;
+        game.scoreBlocks.forEach(block => {
+            block.height += 15;
+            block.width += 15;
+        });
         game.spawnPowerUp();
     }
     initializeImage() {
         const img = new Image()
-        img.src = "/src/game/assets/sprites/items/coinspawnblock/coin_spawn1.png";
+        img.src = "/src/game/assets/sprites/items/sizechangeblock/size_change1.png";
         this.currentImage = img;
     }
 }
-export default CoinSpawnBlock;
+export default SizeChangeBlock;

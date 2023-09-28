@@ -1,5 +1,6 @@
 import CoinSpawnBlock from "../classes/CoinSpawnBlock";
 import LevelChangeBlock from "../classes/LevelChangeBlock";
+import SizeChangeBlock from "../classes/SizeChangeBlock";
 
 const GAME_SETTINGS = {
     WIDTH: 1024,
@@ -10,6 +11,7 @@ const GAME_SETTINGS = {
     POWERUP_TYPES: [
         LevelChangeBlock.prototype,
         CoinSpawnBlock.prototype,
+        SizeChangeBlock.prototype,
     ],
     STARTING_POSITION: {
         x: 32,
