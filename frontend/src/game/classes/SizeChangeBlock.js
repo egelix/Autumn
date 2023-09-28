@@ -1,3 +1,4 @@
+import GAME_SETTINGS from "../constants/GameSettings";
 import CollisionBlock from "./CollisionBlock";
 
 class SizeChangeBlock extends CollisionBlock {
@@ -8,9 +9,10 @@ class SizeChangeBlock extends CollisionBlock {
         this.c.drawImage(this.currentImage, this.position.x, this.position.y, this.width, this.height);
       }
     activate(game) {
+        const growth = GAME_SETTINGS.BLOCK_SIZE / 3;
         game.scoreBlocks.forEach(block => {
-            block.height += 15;
-            block.width += 15;
+            block.height += growth;
+            block.width += growth;
         });
         game.spawnPowerUp();
     }

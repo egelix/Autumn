@@ -12,12 +12,12 @@ class Player {
         };
         this.width= GAME_SETTINGS.BLOCK_SIZE * 1.5;
         this.height = GAME_SETTINGS.BLOCK_SIZE * 1.5;
-        this.speed = 7;
+        this.speed = 15 * GAME_SETTINGS.SPEED_UNIT;
         this.maxFallSpeed = GAME_SETTINGS.MAX_FALL_SPEED;
         this.jumpSpeed = {
-            acceleration: 1,
-            max: 20,
-            initial: 5,
+            acceleration: 2 * GAME_SETTINGS.SPEED_UNIT,
+            max: 40 * GAME_SETTINGS.SPEED_UNIT,
+            initial: 8 * GAME_SETTINGS.SPEED_UNIT,
         };
         this.gravity = GAME_SETTINGS.GRAVITY;
         this.collisionHandler = new CollisionHandler({
