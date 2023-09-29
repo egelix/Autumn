@@ -12,7 +12,7 @@ const ACHIEVEMENT_DATA = [
         imgSrcEmpty: "/src/pixel/achievements/100coins_empty.png",
         imgSrcDone: "/src/pixel/achievements/100coins_done.png",
         text: "Collect at least 100 coins in one run",
-        done: true,
+        done: false,
         index: 1,
     },
     {
