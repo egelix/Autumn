@@ -17,14 +17,14 @@ public class Achievement {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @Column(name = "achievement_id")
-    private int achievementId;
+    @Column(name = "achieved")
+    private int achieved;
     @Column(name = "date_of_achievement")
     private Date date;
 
     public Achievement(User user, int achievementId) {
         this.user = user;
-        this.achievementId = achievementId;
+        this.achieved = achievementId;
         this.date = new Date();
     }
 
@@ -44,11 +44,11 @@ public class Achievement {
     }
 
     public int getAchievementId() {
-        return achievementId;
+        return achieved;
     }
 
     public void setAchievementId(int achievementId) {
-        this.achievementId = achievementId;
+        this.achieved = achievementId;
     }
 
     public Date getDate() {

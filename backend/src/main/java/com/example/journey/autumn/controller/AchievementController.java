@@ -5,6 +5,7 @@ import com.example.journey.autumn.model.GameRun;
 import com.example.journey.autumn.model.User;
 import com.example.journey.autumn.repository.AchievementRepository;
 import com.example.journey.autumn.repository.UserRepository;
+import com.example.journey.autumn.service.AchievementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,15 +21,20 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/achievements")
 public class AchievementController {
-    @Autowired
     AchievementRepository achievementRepository;
-    @Autowired
     UserRepository userRepository;
+    AchievementService achievementService;
 
-    @GetMapping(value = "/user/{id}", produces = "application/json")
-    public List<Achievement> getAchievementsByUser(@PathVariable("id") Long id) {
+    public AchievementController(AchievementRepository achievementRepository, UserRepository userRepository, AchievementService achievementService) {
+        this.achievementRepository = achievementRepository;
+        this.userRepository = userRepository;
+        this.achievementService = achievementService;
+    }
+
+    @GetMapping(value = "/{id}", produces = "application/json")
+    public List<Integer> getAchievementsByUser(@PathVariable("id") Long id) {
         Optional<User> user = userRepository.findById(id);
-        return user.isPresent() ? achievementRepository.findAllByUser(user.get()) : null;
+        return user.isPresent() ? achievementService.getListOfAchievementsByUser(user.get()) : null;
     }
 
 }
