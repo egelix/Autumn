@@ -3,6 +3,11 @@ import Game from "./classes/Game";
 import UserContext from "../user/UserContext";
 import updateHighscore from "../api/updateHighscore";
 import createRun from "../api/createRun";
+import runContext from "./classes/RunContext";
+import ACHIEVEMENT_DATA from "../components/Achievements/achievementData";
+import addDoneAchievementToUser from "../api/addDoneAchievementToUser";
+import RunContext from "./classes/RunContext";
+import fetchAchievementsByUser from "../api/fetchAchievementsByUser";
 
 const GameApp = ({playerCharacter, isLoggedIn, setGameOverText}) => {
     const canvasRef = useRef(null);
@@ -16,9 +21,23 @@ const GameApp = ({playerCharacter, isLoggedIn, setGameOverText}) => {
       game.run();
     }, []) */
 
+    const updateAchievements = async (context) => {
+      const doneAchievements = await fetchAchievementsByUser();
+      let achievementsToCheck;
+      if (doneAchievements.length) {
+        achievementsToCheck = ACHIEVEMENT_DATA.filter(ach => !doneAchievements.includes(ach.index))
+      } else {
+        achievementsToCheck = ACHIEVEMENT_DATA;
+      }
+      console.log(context)
+      const achievementsToUpdate = achievementsToCheck.filter(achievement => achievement.check(context))
+                                                      .map(achievement => achievement.index);
+      addDoneAchievementToUser(achievementsToUpdate);
+    };
+
     const draw = (game) => {
       game.update();
-    }
+    };
     useEffect(() => {
     
       const canvas = canvasRef.current
@@ -35,8 +54,9 @@ const GameApp = ({playerCharacter, isLoggedIn, setGameOverText}) => {
           animationFrameId = window.requestAnimationFrame(render);
         }
         if(game.state === "finished") {
-          game.playerGUI.displayGameOver();
           window.cancelAnimationFrame(animationFrameId);
+          const context = new RunContext(game.player.score);
+          console.log(context)
           if(isLoggedIn) {
             if(game.player.score > currentUser.highscore) {
               updateHighscore(game.player.score);
@@ -44,6 +64,7 @@ const GameApp = ({playerCharacter, isLoggedIn, setGameOverText}) => {
               createRun(game.player.score, playerCharacter.name);
             }
             setGameOverText("You scored " + game.player.score + " Points");
+            updateAchievements(context);
           }
       }
       render()

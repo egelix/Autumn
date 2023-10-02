@@ -12,9 +12,10 @@ export default function Achievements() {
       for (let achievement of ACHIEVEMENT_DATA) {
         if (doneAchievements.includes(achievement.index)) {
           achievement.done = true;
+        } else {
+          achievement.done = false;
         }
-      setAchievementData(ACHIEVEMENT_DATA);
-      console.log(ACHIEVEMENT_DATA)
+      //setAchievementData(ACHIEVEMENT_DATA);
       }
     }, []
   );
