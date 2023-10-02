@@ -11,12 +11,13 @@ class PlayerGUI {
         this.timeLimit = 20 + this.startupMaxTime;
         this.displayedTime = this.timeLimit;
         this.startupTimeDisplayed = 1;
+        this.fontSize = GAME_SETTINGS.BLOCK_SIZE;
     }
     draw() {
-        this.c.font = "30px Arial";
+        this.c.font = this.fontSize + "px Arial";
         this.c.fillStyle = 'rgb(255, 0, 0)';
-        this.c.fillText("SCORE: " + this.player.score, 800, 30);
-        this.c.fillText("TIME: " + this.displayedTime, 40, 30);
+        this.c.fillText("SCORE: " + this.player.score, GAME_SETTINGS.BLOCK_SIZE * 26, GAME_SETTINGS.BLOCK_SIZE);
+        this.c.fillText("TIME: " + this.displayedTime, GAME_SETTINGS.BLOCK_SIZE, GAME_SETTINGS.BLOCK_SIZE);
     }
     update() {
         this.draw();
@@ -36,8 +37,8 @@ class PlayerGUI {
         this.timeElapsed = this.startingTime - Date.now();
         this.startupTimeDisplayed = Math.ceil(this.startupMaxTime + (this.timeElapsed / 1000))
         this.c.clearRect(0, 0, GAME_SETTINGS.WIDTH, GAME_SETTINGS.HEIGHT);
-        this.c.font = "100px Arial";
-        this.c.fillText(this.startupTimeDisplayed, 450, 200);
+        this.c.font = (this.fontSize * 3) + "px Arial";
+        this.c.fillText(this.startupTimeDisplayed, GAME_SETTINGS.WIDTH / 2 - GAME_SETTINGS.BLOCK_SIZE, GAME_SETTINGS.HEIGHT / 2);
         if(this.startupTimeDisplayed === 0) {
             this.game.state = "running";
         }

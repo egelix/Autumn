@@ -8,6 +8,7 @@ import ACHIEVEMENT_DATA from "../components/Achievements/achievementData";
 import addDoneAchievementToUser from "../api/addDoneAchievementToUser";
 import RunContext from "./classes/RunContext";
 import fetchAchievementsByUser from "../api/fetchAchievementsByUser";
+import MobileButtons from "./MobileButtons";
 
 const GameApp = ({playerCharacter, isLoggedIn, setGameOverText}) => {
     const canvasRef = useRef(null);
@@ -74,7 +75,10 @@ const GameApp = ({playerCharacter, isLoggedIn, setGameOverText}) => {
       }
     }, [draw])
     return (
+      <div className="game-container">
         <canvas ref={canvasRef} tabIndex={"0"} />
+        <MobileButtons />
+      </div>
     )
 }
 export default GameApp;

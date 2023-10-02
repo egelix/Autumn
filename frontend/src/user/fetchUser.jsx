@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:8080";
+import BASE_URL from "../constants";
 
 const fetchUser = () => {
     const id = localStorage.getItem("userId");

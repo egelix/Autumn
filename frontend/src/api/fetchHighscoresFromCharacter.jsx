@@ -1,4 +1,5 @@
-const BASE_URL = "http://localhost:8080";
+import BASE_URL from "../constants";
+
 const fetchHighscoresFromCharacter = (character) => {
     return fetch(BASE_URL + "/game-runs/highscore/" + character,
     {

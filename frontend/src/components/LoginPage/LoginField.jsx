@@ -3,14 +3,14 @@ import { useNavigate } from "react-router-dom";
 import fetchUser from '../../user/fetchUser';
 import UserContext from '../../user/UserContext';
 import { Buffer } from 'buffer';
-
-const BASE_URL = "http://localhost:8080";
+import BASE_URL from '../../constants';
 
 export default function LoginField({newUser, setLoginActive}) {
   const navigate = useNavigate();
   const [name, setName] = useState(newUser);
   const [password, setPassword] = useState("");
   const [currentUser, setCurrentUser] = useContext(UserContext);
+  const [error, setError] = useState(null);
 
   const handleNameChange = (event) => {
     setName(event.target.value);
@@ -22,22 +22,40 @@ export default function LoginField({newUser, setLoginActive}) {
 
   const handleLogin = (event) => {
     event.preventDefault();
-    fetch(BASE_URL + "/auth/login", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": "Basic " + Buffer.from(name + ":" + password).toString("base64")
-      }
-      // body: JSON.stringify({ name: name, password: password }),
-    })
-    .then(response => {localStorage.setItem("Authorization", response.headers.get("Authorization"));
-                        return response.json();})
-      .then(user => {
-        console.log(user.id)
-        localStorage.setItem("userId", user.id);
-        setCurrentUser({name: user.username, id: user.id, authorities: user.authorities});
+    try {
+      fetch(BASE_URL + "/auth/login", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Basic " + Buffer.from(name + ":" + password).toString("base64")
+        }
+        // body: JSON.stringify({ name: name, password: password }),
       })
-      .then(() => navigate("/account/home"));
+      .then(response => {
+        if(!response?.ok) {
+          switch(response?.status) {
+            case(401):
+              setError("Wrong username or password.");
+              break;
+            default:
+              setError("An error occured. Error code: " + response?.status);
+              break;
+          }
+          return;
+        }
+        localStorage.setItem("Authorization", response.headers.get("Authorization"));
+        return response.json();
+                        })
+        .then(user => {
+          console.log(user.id)
+          localStorage.setItem("userId", user.id);
+          setCurrentUser({name: user.username, id: user.id, authorities: user.authorities});
+        })
+        .then(() => navigate("/account/home"));
+    }
+    catch(error) {
+      setError(error.message);
+    }
   };
 
   return (
@@ -52,6 +70,8 @@ export default function LoginField({newUser, setLoginActive}) {
         <input type="password" name="password" onChange={handlePasswordChange} />
         <button type='submit' className='submit-btn'>Login</button>
       </form>
+      {error===null?null
+        :<p className='error-text'>{error}</p>}
     </div>
   )
 }
