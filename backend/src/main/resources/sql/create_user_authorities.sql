@@ -7,7 +7,7 @@ CREATE TABLE _user (
 
 INSERT INTO _user (username, password)
 VALUES 
-('martin', '$2a$12$cRhvJOf9ZXdK/ao..PKmjuV4t3lICILuFiN444Ki6CG6FMMrfi5I2'),
+('martin', '$2a$12$Fct.wuHcTPpHRTK/IuXNj.XjNoRRo4bEkaTo8D/vtivW4YoAuwODO'),
 ('kristian', '$2a$12$vZgGKOWaCOtLSlbZV90ULuJwwhfE6q11sJeGRGTlg.p2K/zhH76la'),
 ('sebastian', '$2a$12$/MwebRD7Dkel00Pn06eBneUI1h/pYbFy040QVGfUrwdsWV/6yMpVC'),
 ('testuser1', '$2a$12$lWR4TcDam3pJXkhZrrAgzO/AneZz5Bd3jguDz7bEnWyuDDxXlHvrO'),
@@ -39,4 +39,15 @@ VALUES
 (9, 'USER'),
 (10, 'USER');
 
+CREATE TABLE achievements (
+	achievement_id serial NOT NULL PRIMARY KEY,
+	user_id int NOT NULL,
+	achieved int NOT NULL,
+	date_of_achievement date NOT NULL,
+	CONSTRAINT FK_achievement_user FOREIGN KEY (user_id) REFERENCES _user (user_id)	
+);
 
+INSERT INTO achievements(user_id, achieved, date_of_achievement)
+VALUES 
+(1, 0, NOW()),
+(1, 2, NOW());
