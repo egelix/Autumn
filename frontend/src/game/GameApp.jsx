@@ -29,10 +29,11 @@ const GameApp = ({playerCharacter, isLoggedIn, setGameOverText}) => {
       } else {
         achievementsToCheck = ACHIEVEMENT_DATA;
       }
-      console.log(context)
       const achievementsToUpdate = achievementsToCheck.filter(achievement => achievement.check(context))
                                                       .map(achievement => achievement.index);
-      addDoneAchievementToUser(achievementsToUpdate);
+      console.log(achievementsToCheck)
+      console.log(achievementsToUpdate)
+      addDoneAchievementToUser(achievementsToUpdate);    
     };
 
     const draw = (game) => {
@@ -56,7 +57,6 @@ const GameApp = ({playerCharacter, isLoggedIn, setGameOverText}) => {
         if(game.state === "finished") {
           window.cancelAnimationFrame(animationFrameId);
           const context = new RunContext(game.player.score);
-          console.log(context)
           if(isLoggedIn) {
             if(game.player.score > currentUser.highscore) {
               updateHighscore(game.player.score);
