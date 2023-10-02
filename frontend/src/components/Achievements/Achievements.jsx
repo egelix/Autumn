@@ -15,7 +15,7 @@ export default function Achievements() {
         } else {
           achievement.done = false;
         }
-      //setAchievementData(ACHIEVEMENT_DATA);
+      setAchievementData(ACHIEVEMENT_DATA);
       }
     }, []
   );
@@ -25,7 +25,8 @@ export default function Achievements() {
         <h3>ACHIEVEMENTS</h3>
         <hr />
         <div className='achievements-container'>
-          {ACHIEVEMENT_DATA.map(achievement => <AchievementElement key={achievement.index} data={achievement} />)}
+          {achievementData === null? "Loading..." 
+          :achievementData.map(achievement => <AchievementElement key={achievement.index} data={achievement} />)}
         </div>
     </div>
   )
