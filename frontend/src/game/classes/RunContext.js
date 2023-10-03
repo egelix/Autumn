@@ -4,6 +4,8 @@ class RunContext {
     constructor() {
         this.coins = 0;
         this.score = 0;
+        this.isNewHighScore = false;
+        this.newAchievements = null;
     }
 }
 
