@@ -91,7 +91,8 @@ class CollisionHandler {
                 object2: scoreBlock,
             })
         ) {
-            this.player.score++;
+            this.game.context.score++;
+            this.game.context.coins++;
             this.game.playerGUI.timeLimit++;
             this.game.scoreBlocks.splice(i, 1);
             return;

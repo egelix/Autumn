@@ -57,15 +57,14 @@ const GameApp = ({playerCharacter, isLoggedIn, setGameOverText}) => {
         }
         if(game.state === "finished") {
           window.cancelAnimationFrame(animationFrameId);
-          const context = new RunContext(game.player.score);
           if(isLoggedIn) {
-            if(game.player.score > currentUser.highscore) {
+            if(game.context.score > currentUser.highscore) {
               updateHighscore(game.player.score);
             }
               createRun(game.player.score, playerCharacter.name);
             }
-            setGameOverText("You scored " + game.player.score + " Points");
-            updateAchievements(context);
+            setGameOverText("You scored " + game.context.score + " Points");
+            updateAchievements(game.context);
           }
       }
       render()
