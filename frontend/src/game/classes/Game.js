@@ -5,9 +5,11 @@ import InputHandler from "./InputHandler";
 import ScoreBlock from "./ScoreBlock";
 import PlayerGUI from "./PlayerGUI";
 import LEVELS from "../constants/LevelData";
+import RunContext from "./RunContext";
 
 class Game {
     constructor(canvas, playerCharacter) {
+        this.context = new RunContext();
         this.canvas = canvas;
         this.c = canvas.getContext('2d');
         this.playerCharacter = playerCharacter;

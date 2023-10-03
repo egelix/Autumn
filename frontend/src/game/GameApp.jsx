@@ -10,7 +10,7 @@ import RunContext from "./classes/RunContext";
 import fetchAchievementsByUser from "../api/fetchAchievementsByUser";
 import MobileButtons from "./MobileButtons";
 
-const GameApp = ({playerCharacter, isLoggedIn, setGameOverText}) => {
+const GameApp = ({playerCharacter, isLoggedIn, setGameOverText, setGameContext}) => {
     const canvasRef = useRef(null);
     const [currentUser, setCurrentUser] = useContext(UserContext);
     /* useEffect(() => {
@@ -32,16 +32,14 @@ const GameApp = ({playerCharacter, isLoggedIn, setGameOverText}) => {
       }
       const achievementsToUpdate = achievementsToCheck.filter(achievement => achievement.check(context))
                                                       .map(achievement => achievement.index);
-      console.log(achievementsToCheck)
-      console.log(achievementsToUpdate)
-      addDoneAchievementToUser(achievementsToUpdate);    
+      addDoneAchievementToUser(achievementsToUpdate);
+      return achievementsToUpdate;    
     };
 
     const draw = (game) => {
       game.update();
     };
     useEffect(() => {
-    
       const canvas = canvasRef.current
       canvas.focus();
       let animationFrameId
@@ -50,22 +48,27 @@ const GameApp = ({playerCharacter, isLoggedIn, setGameOverText}) => {
       
       
       //Our draw came here
-      const render = () => {
+      const render = async () => {
         if(game.state !== "finished") {
           draw(game);
           animationFrameId = window.requestAnimationFrame(render);
         }
         if(game.state === "finished") {
           window.cancelAnimationFrame(animationFrameId);
-          const context = new RunContext(game.player.score);
           if(isLoggedIn) {
-            if(game.player.score > currentUser.highscore) {
-              updateHighscore(game.player.score);
+            if(game.context.score > currentUser.highscore) {
+              updateHighscore(game.context.score);
+              game.context.isNewHighScore = true;
             }
-              createRun(game.player.score, playerCharacter.name);
+              createRun(game.context.score, playerCharacter.name);
+              const newAchievements = await updateAchievements(game.context);
+              if(newAchievements.length > 0) {
+                game.context.newAchievements = newAchievements;
+              }
+              setGameContext(game.context);
+              console.log(game.context);
             }
-            setGameOverText("You scored " + game.player.score + " Points");
-            updateAchievements(context);
+            setGameOverText("You scored " + game.context.score + " Points");
           }
       }
       render()

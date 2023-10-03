@@ -1,7 +1,7 @@
 .game-over-container {
     display: flex;
     flex-direction: column;
-    width: 30%;
+    width: fit-content;
     margin:10% auto;
     box-shadow: 10px 10px rgb(37, 37, 37);
     border: 1em solid;
@@ -21,3 +21,9 @@
         padding-top: 40%;
     }
   }
+.achievement-item {
+    display: flex;
+}
+.text {
+  font-family: 'Public Pixel', sans-serif;
+}

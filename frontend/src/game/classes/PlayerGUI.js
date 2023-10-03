@@ -16,7 +16,7 @@ class PlayerGUI {
     draw() {
         this.c.font = this.fontSize + "px Arial";
         this.c.fillStyle = 'rgb(255, 0, 0)';
-        this.c.fillText("SCORE: " + this.player.score, GAME_SETTINGS.BLOCK_SIZE * 26, GAME_SETTINGS.BLOCK_SIZE);
+        this.c.fillText("SCORE: " + this.game.context.score, GAME_SETTINGS.BLOCK_SIZE * 26, GAME_SETTINGS.BLOCK_SIZE);
         this.c.fillText("TIME: " + this.displayedTime, GAME_SETTINGS.BLOCK_SIZE, GAME_SETTINGS.BLOCK_SIZE);
     }
     update() {

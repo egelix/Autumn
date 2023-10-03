@@ -47,9 +47,11 @@ export default function LoginField({newUser, setLoginActive}) {
         return response.json();
                         })
         .then(user => {
-          console.log(user.id)
           localStorage.setItem("userId", user.id);
-          setCurrentUser({name: user.username, id: user.id, authorities: user.authorities});
+        })
+        .then(async () => {
+          const userData = await fetchUser();
+          setCurrentUser(userData);
         })
         .then(() => navigate("/account/home"));
     }
