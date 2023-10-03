@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:8080";
+import BASE_URL from "../constants";
 const addDoneAchievementToUser = (achievements) => {
     const id = parseInt(localStorage.getItem("userId"));
     return fetch(BASE_URL + "/achievements",
