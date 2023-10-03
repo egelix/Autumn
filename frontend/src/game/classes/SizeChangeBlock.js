@@ -13,6 +13,7 @@ class SizeChangeBlock extends CollisionBlock {
         game.scoreBlocks.forEach(block => {
             block.height += growth;
             block.width += growth;
+            block.score++;
         });
         game.spawnPowerUp();
     }

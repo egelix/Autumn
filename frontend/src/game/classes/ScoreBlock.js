@@ -3,6 +3,7 @@ import CollisionBlock from "./CollisionBlock";
 class ScoreBlock extends CollisionBlock {
     constructor({ position, height, width, c }) {
         super({ position, height, width, c });
+        this.score = 1;
     }
     draw() {
         this.c.drawImage(this.currentImage, this.position.x, this.position.y, this.width, this.height);
