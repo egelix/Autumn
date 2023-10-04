@@ -9,7 +9,6 @@ class CoinSpawnBlock extends CollisionBlock {
       }
     activate(game) {
         game.spawnAllCoins();
-        game.currentLevel.currentCoins = game.currentLevel.maxCoins;
         game.playerGUI.timeLimit -= 5;
         game.spawnPowerUp();
     }
