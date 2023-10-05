@@ -10,8 +10,20 @@ class Player {
             x: 0,
             y: 0,
         };
-        this.width= GAME_SETTINGS.BLOCK_SIZE * 1.5;
-        this.height = GAME_SETTINGS.BLOCK_SIZE * 1.5;
+        this.width= GAME_SETTINGS.BLOCK_SIZE * playerCharacter.width;
+        this.height = GAME_SETTINGS.BLOCK_SIZE * playerCharacter.height;
+        this.hitBox = {
+            width: GAME_SETTINGS.BLOCK_SIZE * playerCharacter.hitBox.width,
+            height: GAME_SETTINGS.BLOCK_SIZE * playerCharacter.hitBox.height,
+            position: {
+                x: 0,
+                y: 0,
+            },
+        }
+        this.margin = {
+            x: (this.width - this.hitBox.width) / 2,
+            y: this.height - this.hitBox.height,
+        }
         this.speed = 15 * GAME_SETTINGS.SPEED_UNIT;
         this.maxFallSpeed = GAME_SETTINGS.MAX_FALL_SPEED;
         this.jumpSpeed = {
@@ -40,6 +52,7 @@ class Player {
         this.currentImg = new Image();
         this.currentImg.src = playerCharacter.animations["idle"].src;
         this.elapsedFrames = 0;
+        this.direction = "right";
     }
     loadImg() {
         this.currentImg.src = this.spriteSrc;
@@ -53,11 +66,11 @@ class Player {
         this.switchSprite("idle");
     }
     switchSprite(key) {
-        console.log(this.animations[key]);
-        if (this.currentImg === this.animations[key].image) return
-    
+        if (this.currentImg === this.animations[key].image) {
+            return
+        }
         this.currentFrame = 0
-        this.image = this.animations[key].image
+        this.currentImg = this.animations[key].image
         this.frameBuffer = this.animations[key].frameBuffer
         this.frameRate = this.animations[key].frameRate
     }
@@ -73,7 +86,6 @@ class Player {
         width: this.currentImg.width / this.frameRate,
         height: this.currentImg.height,
         }
-        console.log(this.currentFrame);
         this.context.drawImage(
             this.currentImg,
             cropbox.position.x,
@@ -85,14 +97,21 @@ class Player {
             this.width,
             this.height
         )
+        this.context.fillStyle = 'rgba(255, 0, 255, 0.5)';
+        this.context.fillRect(this.hitBox.position.x, this.hitBox.position.y, this.hitBox.width, this.hitBox.height);
     }
     update() {
-        this.draw();
         this.applyHorizontalMovement();
         this.applyGravity();
+        this.updatehitBox();
         this.collisionHandler.checkScoreBlockCollision();
         this.collisionHandler.checkForVerticalCollisions();
         this.collisionHandler.checkPowerUpCollision();
+        this.draw();
+    }
+    updatehitBox() {
+        this.hitBox.position.x = this.position.x + this.margin.x;
+        this.hitBox.position.y = this.position.y + this.margin.y;
     }
     applyGravity() {
         this.position.y += this.velocity.y;
@@ -110,15 +129,29 @@ class Player {
             ((this.position.x + this.width + this.velocity.x) < GAME_SETTINGS.WIDTH) 
             ) {
             this.velocity.x = this.speed;
+            this.switchSprite("run");
+            if(this.direction === "left") {
+                this.direction = "right";
+            }
         }
         else if(
             this.state.isMovingLeft &&
             ((this.position.x + this.velocity.x) > 0)
             ) {
             this.velocity.x = -this.speed;
+            this.switchSprite("runLeft");
+            if(this.direction === "right") {
+                this.direction = "left";
+            }
         }
         else {
             this.velocity.x = 0;
+            if(this.direction === "right") {
+                this.switchSprite("idle");
+            }
+            else {
+                this.switchSprite("idleLeft");
+            }
         }
         this.position.x += this.velocity.x;
         }

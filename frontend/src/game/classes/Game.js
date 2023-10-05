@@ -106,8 +106,6 @@ class Game {
                     x: position.x,
                     y: position.y,
                 },
-                width: GAME_SETTINGS.BLOCK_SIZE,
-                height: GAME_SETTINGS.BLOCK_SIZE,
                 c: this.c,
             })
         })
