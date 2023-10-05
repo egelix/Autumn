@@ -52,6 +52,7 @@ class Player {
         this.currentImg = new Image();
         this.currentImg.src = playerCharacter.animations["idle"].src;
         this.elapsedFrames = 0;
+        this.direction = "right";
     }
     loadImg() {
         this.currentImg.src = this.spriteSrc;
@@ -69,7 +70,7 @@ class Player {
             return
         }
         this.currentFrame = 0
-        this.image = this.animations[key].image
+        this.currentImg = this.animations[key].image
         this.frameBuffer = this.animations[key].frameBuffer
         this.frameRate = this.animations[key].frameRate
     }
@@ -128,15 +129,29 @@ class Player {
             ((this.position.x + this.width + this.velocity.x) < GAME_SETTINGS.WIDTH) 
             ) {
             this.velocity.x = this.speed;
+            this.switchSprite("run");
+            if(this.direction === "left") {
+                this.direction = "right";
+            }
         }
         else if(
             this.state.isMovingLeft &&
             ((this.position.x + this.velocity.x) > 0)
             ) {
             this.velocity.x = -this.speed;
+            this.switchSprite("runLeft");
+            if(this.direction === "right") {
+                this.direction = "left";
+            }
         }
         else {
             this.velocity.x = 0;
+            if(this.direction === "right") {
+                this.switchSprite("idle");
+            }
+            else {
+                this.switchSprite("idleLeft");
+            }
         }
         this.position.x += this.velocity.x;
         }

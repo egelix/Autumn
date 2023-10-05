@@ -9,7 +9,22 @@ const characterData = [
                 src: "/src/game/assets/sprites/characters/martin/martin_idle.png",
                 frameBuffer: 10,
                 frameRate: 4,
-            }
+            },
+            idleLeft: {
+                src: "/src/game/assets/sprites/characters/martin/martin_idle_left.png",
+                frameBuffer: 10,
+                frameRate: 4,
+            },
+            run: {
+                src: "/src/game/assets/sprites/characters/martin/martin_run_right.png",
+                frameBuffer: 10,
+                frameRate: 6,
+            },
+            runLeft: {
+                src: "/src/game/assets/sprites/characters/martin/martin_run_left.png",
+                frameBuffer: 10,
+                frameRate: 6,
+            },
         },
         hitBox: {
             width: 1,
@@ -28,7 +43,22 @@ const characterData = [
                 src: "/src/game/assets/sprites/characters/kris/kris_idle.png",
                 frameBuffer: 10,
                 frameRate: 4,
-            }
+            },
+            idleLeft: {
+                src: "/src/game/assets/sprites/characters/kris/kris_idle.png",
+                frameBuffer: 10,
+                frameRate: 4,
+            },
+            run: {
+                src: "/src/game/assets/sprites/characters/kris/kris_run_right.png",
+                frameBuffer: 10,
+                frameRate: 6,
+            },
+            runLeft: {
+                src: "/src/game/assets/sprites/characters/kris/kris_run_left.png",
+                frameBuffer: 10,
+                frameRate: 6,
+            },
         },
         hitBox: {
             width: 1,
