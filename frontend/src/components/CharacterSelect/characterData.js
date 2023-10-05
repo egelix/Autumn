@@ -11,6 +11,12 @@ const characterData = [
                 frameRate: 4,
             }
         },
+        hitbox: {
+            width: 1,
+            height: 1,
+        },
+        width: 2,
+        height: 2,
     },
     {
         key: 2,
@@ -24,6 +30,12 @@ const characterData = [
                 frameRate: 4,
             }
         },
+        hitbox: {
+            width: 1,
+            height: 1,
+        },
+        width: 2,
+        height: 2,
     }
 ]
 export default characterData;
