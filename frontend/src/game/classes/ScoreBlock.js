@@ -48,7 +48,6 @@ class ScoreBlock extends CollisionBlock {
     }
     initializeImage() {
         this.currentImage.src = "/src/game/assets/sprites/items/lightbulb/bulb_animation.png";
-
         this.frameRate = 15;
         this.frameBuffer = 4;
         this.currentFrame = 0;
