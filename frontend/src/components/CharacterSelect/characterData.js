@@ -77,7 +77,7 @@ const characterData = [
             max: 40,
             initial: 8,
         },
-        speed: 20,
+        speed: 16,
     }
 ]
 export default characterData;
