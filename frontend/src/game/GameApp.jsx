@@ -13,14 +13,8 @@ import MobileButtons from "./MobileButtons";
 const GameApp = ({playerCharacter, isLoggedIn, setGameOverText, setGameContext}) => {
     const canvasRef = useRef(null);
     const [currentUser, setCurrentUser] = useContext(UserContext);
-    /* useEffect(() => {
-      console.log("hook fired!");
-      console.log(canvasRef.current);
-      const canvas = canvasRef.current;
-      const game = new Game(canvas);
-      console.log(game);
-      game.run();
-    }, []) */
+    const FPS = 60;
+    let fpsInterval, startTime, now, then, elapsed;
 
     const updateAchievements = async (context) => {
       const doneAchievements = await fetchAchievementsByUser();
@@ -45,14 +39,15 @@ const GameApp = ({playerCharacter, isLoggedIn, setGameOverText, setGameContext})
       let animationFrameId
       const game = new Game(canvas, playerCharacter);
       game.initialize();
+
+      //prepare framecount
+      fpsInterval = 1000/FPS;
+      then = window.performance.now();
+      startTime = then;
       
       
       //Our draw came here
-      const render = async () => {
-        if(game.state !== "finished") {
-          draw(game);
-          animationFrameId = window.requestAnimationFrame(render);
-        }
+      const render = async (newtime) => {
         if(game.state === "finished") {
           window.cancelAnimationFrame(animationFrameId);
           if(isLoggedIn) {
@@ -70,6 +65,14 @@ const GameApp = ({playerCharacter, isLoggedIn, setGameOverText, setGameContext})
             }
             setGameOverText("You scored " + game.context.score + " Points");
           }
+        animationFrameId = window.requestAnimationFrame(render);
+        now = newtime;
+        elapsed = now - then;
+        if(elapsed > fpsInterval) {
+          then = now - (elapsed % fpsInterval);
+          draw(game);
+        }
+        
       }
       render()
       
