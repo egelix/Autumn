@@ -28,10 +28,16 @@ const characterData = [
         },
         hitBox: {
             width: 1,
-            height: 1,
+            height: 2,
         },
         width: 2,
         height: 2,
+        jumpSpeed: {
+            acceleration: 3,
+            max: 40,
+            initial: 8,
+        },
+        speed: 15,
     },
     {
         key: 2,
@@ -66,6 +72,12 @@ const characterData = [
         },
         width: 2,
         height: 2,
+        jumpSpeed: {
+            acceleration: 2,
+            max: 40,
+            initial: 8,
+        },
+        speed: 20,
     }
 ]
 export default characterData;

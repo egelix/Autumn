@@ -24,12 +24,12 @@ class Player {
             x: (this.width - this.hitBox.width) / 2,
             y: this.height - this.hitBox.height,
         }
-        this.speed = 15 * GAME_SETTINGS.SPEED_UNIT;
+        this.speed = playerCharacter.speed * GAME_SETTINGS.SPEED_UNIT;
         this.maxFallSpeed = GAME_SETTINGS.MAX_FALL_SPEED;
         this.jumpSpeed = {
-            acceleration: 2 * GAME_SETTINGS.SPEED_UNIT,
-            max: 40 * GAME_SETTINGS.SPEED_UNIT,
-            initial: 8 * GAME_SETTINGS.SPEED_UNIT,
+            acceleration: playerCharacter.jumpSpeed.acceleration * GAME_SETTINGS.SPEED_UNIT,
+            max: playerCharacter.jumpSpeed.max * GAME_SETTINGS.SPEED_UNIT,
+            initial: playerCharacter.jumpSpeed.initial * GAME_SETTINGS.SPEED_UNIT,
         };
         this.gravity = GAME_SETTINGS.GRAVITY;
         this.collisionHandler = new CollisionHandler({
@@ -97,8 +97,8 @@ class Player {
             this.width,
             this.height
         )
-        this.context.fillStyle = 'rgba(255, 0, 255, 0.5)';
-        this.context.fillRect(this.hitBox.position.x, this.hitBox.position.y, this.hitBox.width, this.hitBox.height);
+        /* this.context.fillStyle = 'rgba(255, 0, 255, 0.5)';
+        this.context.fillRect(this.hitBox.position.x, this.hitBox.position.y, this.hitBox.width, this.hitBox.height); */
     }
     update() {
         this.applyHorizontalMovement();
