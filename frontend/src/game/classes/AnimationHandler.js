@@ -1,5 +1,3 @@
-import ScoreBlock from "./ScoreBlock";
-
 class AnimationHandler {
     constructor(game) {
         this.game = game;
@@ -9,6 +7,7 @@ class AnimationHandler {
         this.game.scoreBlocks.forEach(scoreBlock => {
             this.updateFrames(scoreBlock);
         });
+        this.updateFrames(this.game.powerUp);
     }
     updateFrames(sprite) {
         sprite.elapsedFrames++
