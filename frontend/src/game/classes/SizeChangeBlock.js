@@ -9,13 +9,17 @@ class SizeChangeBlock extends CollisionBlock {
         this.c.drawImage(this.currentImage, this.position.x, this.position.y, this.width, this.height);
       }
     activate(game) {
-        const growth = GAME_SETTINGS.BLOCK_SIZE / 3;
+        const growth = GAME_SETTINGS.BLOCK_SIZE / 2;
         game.scoreBlocks.forEach(block => {
             block.height += growth;
             block.width += growth;
             block.score++;
-            block.hitBox.x += growth;
-            block.hitBox.y += growth;
+            block.hitBox.x += growth / 2;
+            block.hitBox.y += growth / 2;
+            block.position.x -= growth / 2;
+            block.position.y -= growth / 2;
+            block.hitBox.position.x -= growth / 2;
+            block.hitBox.position.y -= growth / 2;
         });
         game.spawnPowerUp();
     }
