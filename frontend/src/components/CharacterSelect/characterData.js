@@ -45,7 +45,7 @@ const characterData = [
                 frameRate: 4,
             },
             idleLeft: {
-                src: "/src/game/assets/sprites/characters/kris/kris_idle.png",
+                src: "/src/game/assets/sprites/characters/kris/kris_idle_left.png",
                 frameBuffer: 10,
                 frameRate: 4,
             },
@@ -62,10 +62,10 @@ const characterData = [
         },
         hitBox: {
             width: 1,
-            height: 3,
+            height: 2,
         },
-        width: 0.5,
-        height: 1.5,
+        width: 2,
+        height: 2,
     }
 ]
 export default characterData;
