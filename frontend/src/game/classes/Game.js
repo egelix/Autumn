@@ -6,6 +6,7 @@ import ScoreBlock from "./ScoreBlock";
 import PlayerGUI from "./PlayerGUI";
 import LEVELS from "../constants/LevelData";
 import RunContext from "./RunContext";
+import AnimationHandler from "./AnimationHandler";
 
 class Game {
     constructor(canvas, playerCharacter) {
@@ -57,9 +58,10 @@ class Game {
         window.addEventListener('keyup', (event) => {
             this.inputHandler.handleKeyUp(event);
         })
+        this.animationHandler = new AnimationHandler(this);
         }
     draw() {
-        this.c.fillStyle = 'white';
+        this.c.fillStyle = 'black';
         this.c.fillRect(0, 0, this.canvas.width, this.canvas.height);
     }
     update() {
@@ -77,6 +79,7 @@ class Game {
         this.powerUp.update();
         this.player.update();
         this.playerGUI.update();
+        this.animationHandler.update();
         this.checkScoreBlocks();
     }
     loadPlatforms() {

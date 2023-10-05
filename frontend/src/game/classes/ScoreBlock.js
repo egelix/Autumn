@@ -40,8 +40,8 @@ class ScoreBlock extends CollisionBlock {
       this.width,
       this.height
     )
-    this.c.fillStyle = 'rgba(255, 0, 0, 0.5)';
-    this.c.fillRect(this.hitBox.position.x, this.hitBox.position.y, this.hitBox.width, this.hitBox.height);
+    /* this.c.fillStyle = 'rgba(255, 0, 0, 0.5)';
+    this.c.fillRect(this.hitBox.position.x, this.hitBox.position.y, this.hitBox.width, this.hitBox.height); */
     }
     update() {
         this.draw();

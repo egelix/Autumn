@@ -1,5 +1,3 @@
-import GAME_SETTINGS from "../constants/GameSettings";
-
 class CollisionHandler {
     constructor({player, game}) {
         this.player = player;
