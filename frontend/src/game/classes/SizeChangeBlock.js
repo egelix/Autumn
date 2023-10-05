@@ -14,6 +14,8 @@ class SizeChangeBlock extends CollisionBlock {
             block.height += growth;
             block.width += growth;
             block.score++;
+            block.hitBox.x += growth;
+            block.hitBox.y += growth;
         });
         game.spawnPowerUp();
     }

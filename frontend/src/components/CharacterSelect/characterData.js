@@ -62,7 +62,7 @@ const characterData = [
         },
         hitBox: {
             width: 1,
-            height: 1,
+            height: 3,
         },
         width: 0.5,
         height: 1.5,
