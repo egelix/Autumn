@@ -107,6 +107,7 @@ class CollisionHandler {
         })
       )
       {
+        this.game.currentLevel.currentCoins = this.game.currentLevel.maxCoins;
         this.game.powerUp.activate(this.game);
       }
     }
