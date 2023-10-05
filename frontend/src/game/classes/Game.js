@@ -42,7 +42,7 @@ class Game {
             game: this,
             playerCharacter: this.playerCharacter,
         });
-        this.player.loadImg();
+        this.player.loadAnimations();
          this.loadPlatforms();
         this.spawnPowerUp();
         this.loadScoreBlocks();

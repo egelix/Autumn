@@ -5,6 +5,7 @@ class AnimationHandler {
         this.game = game;
     }
     update() {
+        this.updateFrames(this.game.player);
         this.game.scoreBlocks.forEach(scoreBlock => {
             this.updateFrames(scoreBlock);
         });

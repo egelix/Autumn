@@ -36,14 +36,55 @@ class Player {
             current: 0,
             max: 10,
         }
-        this.spriteSrc = playerCharacter.spriteSrc;
+        this.animations = playerCharacter.animations;
         this.currentImg = new Image();
+        this.currentImg.src = playerCharacter.animations["idle"].src;
+        this.elapsedFrames = 0;
     }
     loadImg() {
         this.currentImg.src = this.spriteSrc;
     }
+    loadAnimations() {
+        for(let key in this.animations) {
+            const image = new Image();
+            image.src = this.animations[key].src;
+            this.animations[key].image = image;
+        }
+        this.switchSprite("idle");
+    }
+    switchSprite(key) {
+        console.log(this.animations[key]);
+        if (this.currentImg === this.animations[key].image) return
+    
+        this.currentFrame = 0
+        this.image = this.animations[key].image
+        this.frameBuffer = this.animations[key].frameBuffer
+        this.frameRate = this.animations[key].frameRate
+    }
     draw() {
-        this.context.drawImage(this.currentImg, this.position.x, this.position.y, this.width, this.height);
+        if (!this.currentImg) {
+            return
+        } 
+        const cropbox = {
+        position: {
+            x: this.currentFrame * (this.currentImg.width / this.frameRate),
+            y: 0,
+        },
+        width: this.currentImg.width / this.frameRate,
+        height: this.currentImg.height,
+        }
+        console.log(this.currentFrame);
+        this.context.drawImage(
+            this.currentImg,
+            cropbox.position.x,
+            cropbox.position.y,
+            cropbox.width,
+            cropbox.height,
+            this.position.x,
+            this.position.y,
+            this.width,
+            this.height
+        )
     }
     update() {
         this.draw();
