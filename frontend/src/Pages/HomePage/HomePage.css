@@ -19,10 +19,15 @@
 }
 
 
-.achievement-element {
+.achievement-closed {
     margin: 1%;
     display: grid;
     grid-template-columns: 1fr;
+}
+
+.achievement-open {
+    width: 100%;
+    margin: 0;
 }
 
 .achievement-title {

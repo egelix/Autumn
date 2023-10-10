@@ -5,6 +5,7 @@ import fetchAchievementsByUser from '../../api/fetchAchievementsByUser';
 
 export default function Achievements() {
   const [achievementData, setAchievementData] = useState(null);
+  const [currentOpenAchievement, setCurrentOpenAchievement] = useState(null)
 
   useEffect(
     () => async function setAchievements() {
@@ -26,7 +27,7 @@ export default function Achievements() {
         <hr />
         <div className='achievements-container'>
           {achievementData === null? "Loading..." 
-          :achievementData.map(achievement => <AchievementElement key={achievement.index} data={achievement} />)}
+          :achievementData.map(achievement => <AchievementElement key={achievement.index} data={achievement} openAchievement={currentOpenAchievement} changeOpenAchievement={setCurrentOpenAchievement}/>)}
         </div>
     </div>
   )
